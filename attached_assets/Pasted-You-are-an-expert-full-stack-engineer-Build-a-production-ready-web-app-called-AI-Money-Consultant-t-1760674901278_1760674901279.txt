@@ -1,0 +1,312 @@
+You are an expert full-stack engineer. Build a production-ready web app called AI Money Consultant that interviews a user about their skills, background, interests, constraints, and goals, then recommends the top 3–5 ways they can make money with AI. It should justify each recommendation with: (a) fit score vs. user profile, (b) demand/trend signals, and (c) a simple 7-day action plan.
+
+Tech Stack (use these unless impossible)
+
+Frontend: Next.js 14 (App Router) + TypeScript + TailwindCSS + shadcn/ui + Zustand for state.
+
+Backend: Next.js API routes (server actions) + TypeScript.
+
+Database: Supabase/Postgres (fallback: SQLite via Prisma if Supabase not configured).
+
+Auth: Magic link (Supabase Auth) with anonymous mode allowed.
+
+Styling: Tailwind + shadcn/ui; clean, modern, accessible. Light humor in microcopy.
+
+Testing: Playwright (e2e basic flows) + Jest (core scoring functions).
+
+Optional integrations (feature-flagged): Google Trends, Product Hunt API, Upwork/Fiverr scrapers, YouTube search. If no keys, mock and clearly display “sample data”.
+
+Core User Flow
+
+Welcome: short value prop (“Tell me who you are. I’ll find you the best AI side-income.”) + Start button.
+
+Questionnaire Wizard (5–7 screens, 3–6 questions each):
+
+Skills & Experience (select + free text): writing, coding, design, video, sales, teaching, research, data, operations, niche expertise.
+
+Interests & Enjoyment: what tasks they like; topics/niches they enjoy.
+
+Assets On Hand: audience size, newsletter, social platforms, budget, tools, portfolio, time available (hours/week).
+
+Constraints: risk tolerance, timeline to first $100/$1k, comfort on camera, willingness to learn code/design, compliance limits.
+
+Goals: income target (e.g., $200/mo, $2k/mo+), passive vs. active, B2B vs. B2C preference.
+
+Work Style: solo vs. collaboration, delivery preference (digital products, services, content, commerce).
+
+Market Hunches: niches they suspect are hot.
+
+Results: top 3–5 Monetization Paths with:
+
+Title + 1-sentence summary
+
+Fit Score (0–100) with radar of Fit, Difficulty, Time-to-Cash, Startup Cost
+
+Demand Snapshot (trend delta, job/posting volume proxy, search interest proxy)
+
+7-Day Action Plan (checklist)
+
+“Why this matched you” explainer (bullet points)
+
+Example deliverables & starter prompts (if relevant)
+
+Email me my plan (PDF export) + Save profile.
+
+Iterate: tweak answers sliders → results update.
+
+Data Model (Prisma schema)
+
+Create these tables:
+
+model User {
+  id            String   @id @default(cuid())
+  email         String?  @unique
+  createdAt     DateTime @default(now())
+  profiles      Profile[]
+  recommendations Recommendation[]
+}
+
+model Profile {
+  id            String   @id @default(cuid())
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id])
+  skills        String[] // tags
+  interests     String[] // tags
+  assets        Json     // { audience: number, budget: number, timePerWeek: number, tools: string[] }
+  constraints   Json     // { risk: "low|med|high", onCamera: bool, timeline: "fast|normal|long" }
+  goals         Json     // { incomeTarget: number, passiveVsActive: string, b2bVsB2c: string }
+  workStyle     Json
+  marketHunches String[]
+  createdAt     DateTime @default(now())
+}
+
+model Opportunity {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  summary       String
+  category      String   // "Services" | "Digital Products" | "Content" | "Commerce" | "Affiliate"
+  skillsNeeded  String[] // tags
+  assetsHelpful String[] // tags
+  difficulty    Int      // 1-5
+  timeToCash    Int      // 1-5 (lower is faster)
+  startupCost   Int      // 1-5
+  typicalARPU   Int?     // monthly revenue potential tier 1-5
+  demandTags    String[] // e.g., "tiktok-shop","youtube-automation","notion-templates"
+  exampleTasks  String[]
+  examplePrompts String[]
+  createdAt     DateTime @default(now())
+}
+
+model DemandSignal {
+  id            String   @id @default(cuid())
+  opportunityId String
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id])
+  source        String   // "google_trends" | "product_hunt" | "upwork" | "youtube"
+  metric        String   // "trend_delta" | "posting_volume" | "search_interest"
+  value         Float
+  fetchedAt     DateTime @default(now())
+}
+
+model Recommendation {
+  id            String   @id @default(cuid())
+  userId        String?
+  profileId     String?
+  profile       Profile?  @relation(fields: [profileId], references: [id])
+  items         Json      // array of recommendation items with scores, plan, rationale
+  createdAt     DateTime  @default(now())
+}
+
+Seed Data (initial 20 opportunities)
+
+Seed at least these (expandable), with tags + example prompts:
+
+AI Blog + Newsletter + Affiliate Engine
+
+YouTube Faceless Channel w/ AI Scripts & B-roll
+
+TikTok Shop: AI-aided Product Selection & UGC
+
+Printables & Templates (Canva/Notion/Miro)
+
+Prompt Packs & Playbooks (B2B niches)
+
+Niche SEO Sites with AI Content + Human Edits
+
+Ghostwriting Offers (LinkedIn, Medium, founders)
+
+Short-Form Video Agency (hooks, scripts, captions)
+
+AI Chatbot Services for SMBs (FAQ, lead qual)
+
+AI Research Concierge (synthesizing reports)
+
+Etsy Digital Downloads (wall art, planners)
+
+Micro-SaaS with GPT (single-feature tools)
+
+Local Business Packages (reviews, listings, posts)
+
+Course/Workbook Creation with AI (done-with-you)
+
+Amazon KDP Low/No-Content Enhanced by AI
+
+Podcast Content Repurposing w/ AI
+
+Resume/LinkedIn Optimization Service (AI-assisted)
+
+Data Cleaning & Enrichment Freelance (AI-assisted)
+
+Email Newsletter Monetization (curation + sponsors)
+
+Gumroad Bundles (assets + prompts + SOPs)
+
+For each, include: skillsNeeded, assetsHelpful, difficulty, timeToCash, startupCost, demandTags, exampleTasks, examplePrompts.
+
+Scoring Engine
+
+Create a pure function scoreOpportunity(profile, opportunity, demandSignals) returning a 0–100 Fit Score.
+
+Weights (sum 1.0; make configurable in /config/weights.ts):
+
+Skill Match: 0.35 (Jaccard similarity of user.skills vs. opportunity.skillsNeeded)
+
+Enjoyment/Interest Match: 0.15 (overlap vs. opportunity.category/demandTags)
+
+Asset Advantage: 0.15 (audience/time/tools matching assetsHelpful)
+
+Constraint Fit: 0.10 (penalize if onCamera=false but opp requires camera; risk/timeline mismatches)
+
+Time-to-Cash: 0.10 (invert opportunity.timeToCash)
+
+Startup Cost: 0.05 (invert opportunity.startupCost)
+
+Demand: 0.10 (normalize demandSignals: average of z-scored metrics per opp)
+
+Return a breakdown object:
+
+{
+  total: number,
+  components: {
+    skill: number, interest: number, assets: number, constraints: number,
+    timeToCash: number, startupCost: number, demand: number
+  }
+}
+
+Demand Signals (integrations)
+
+Create a demand/ folder with providers:
+
+googleTrends.ts: function getTrendDelta(keyword: string): Promise<number> (mock if no key; return sample + UI “sample data” badge).
+
+productHunt.ts: getRecentLaunchMentions(tag: string): Promise<number> (mockable).
+
+jobs.ts: getGigVolume(tag: string): Promise<number> (scrape/mocks for Upwork/Fiverr).
+
+youtube.ts: getSearchInterest(query: string): Promise<number> (mockable).
+
+Cache results in DemandSignal with a 24h TTL.
+
+Recommendation Builder
+
+After scoring all opportunities, select top 3–5 and generate:
+
+Short rationale bullets: “Your strong writing + audience = …”
+
+Demand snapshot: list metrics with ▲/▼ indicators.
+
+7-Day Action Plan template:
+
+Day 1: Setup (tools, accounts)
+
+Day 2: Market scan (10 examples, gap notes)
+
+Day 3: MVP deliverable (1 mockup or 1-pager)
+
+Day 4: Offer & pricing (tiers)
+
+Day 5: Outreach (10 DMs or 1 post + 3 comments)
+
+Day 6: Improve from feedback
+
+Day 7: Publish/ship + measure
+
+Starter prompts or task list relevant to the path.
+
+Pages & Components
+
+/ Landing: CTA → Start.
+
+/wizard Multi-step form using shadcn/ui Steps. Persist partial progress in localStorage.
+
+/results Shows ranked cards (3–5) with Fit Score, badges, demand snapshot, action plan; export to PDF.
+
+/dashboard Saved profiles & recommendations.
+
+/admin CRUD for Opportunities + manual “Refresh Demand”.
+
+Components:
+
+QuestionCard, TagSelect, SliderGroup, ScoreRadar (radar chart via recharts), DemandBadge.
+
+RecommendationCard with “Why this matched you”.
+
+PDF & Email
+
+Generate a branded PDF of the selected plan (/api/export/pdf) using @react-pdf/renderer or server-side puppeteer.
+
+Email via Resend (mock if not configured).
+
+Copy & Tone
+
+Friendly, concise, slightly playful. Examples:
+
+Empty state: “Let’s find your money-maker. 5 minutes, zero fluff.”
+
+Tooltips explain terms simply.
+
+Accessibility: proper labels, focus states, keyboard nav.
+
+Security & Privacy
+
+Don’t expose API keys. Use server actions.
+
+Add a simple /privacy page (no data sale; user controls deletion).
+
+Rate-limit demand endpoints.
+
+Tests
+
+Unit tests for scoreOpportunity.
+
+e2e test: complete wizard → see recommendations → export PDF.
+
+Developer Scripts
+
+npm run seed to load Opportunity seeds.
+
+.env.example with SUPABASE_URL, SUPABASE_ANON_KEY, RESEND_KEY, FEATURE_FLAGS.
+
+Acceptance Criteria
+
+I can complete the wizard and see 3–5 recommendations with Fit Score, demand snapshot, and 7-day plan.
+
+I can tweak answers and see scores update.
+
+I can export a PDF and email it to myself.
+
+I can add/edit opportunities in /admin.
+
+If external APIs aren’t configured, the app shows mock demand data with a “sample data” label.
+
+Nice-to-Haves (time permitting)
+
+Toggle for Beginner / Intermediate / Pro that weights Difficulty differently.
+
+“Surprise me” random niche button constrained by profile fit.
+
+Stripe paywall for “Pro Export Pack” (extended plan, extra prompts, outreach templates).
+
+Deliverables:
+
+Full codebase with the stack above, seeded data, tests, and clear README (setup, env vars, how to enable integrations).

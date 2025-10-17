@@ -1,0 +1,282 @@
+[
+  {
+    "title": "Affiliate Blog + AI Content Engine",
+    "summary": "Use AI to create SEO blog posts around affiliate niches, monetize through links.",
+    "category": "Content",
+    "skillsNeeded": ["writing", "basic seo"],
+    "assetsHelpful": ["website", "basic wordpress", "affiliate accounts"],
+    "difficulty": 2,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["affiliate-marketing", "seo", "blogging"],
+    "exampleTasks": [
+      "Research affiliate niches with low competition",
+      "Generate blog posts optimized for long-tail keywords",
+      "Insert affiliate links and publish on schedule"
+    ],
+    "examplePrompts": [
+      "Write a 1500-word blog post optimized for 'best AI tools for teachers', include clear headings and product recommendations.",
+      "Summarize 10 trending affiliate niches from Reddit and Google Trends."
+    ]
+  },
+  {
+    "title": "YouTube Faceless Channel (AI Script + B-Roll)",
+    "summary": "Use ChatGPT to write scripts and stock footage for faceless monetized channels.",
+    "category": "Content",
+    "skillsNeeded": ["writing", "basic video editing"],
+    "assetsHelpful": ["youtube-account", "descript", "pictory"],
+    "difficulty": 3,
+    "timeToCash": 4,
+    "startupCost": 2,
+    "demandTags": ["youtube-automation", "faceless-channel", "content-monetization"],
+    "exampleTasks": [
+      "Write engaging scripts for trending topics",
+      "Use stock B-roll and AI voiceovers to create videos",
+      "Publish 3+ times per week to grow watch time"
+    ],
+    "examplePrompts": [
+      "Generate a 5-minute YouTube script about 'Top 7 Future AI Tools' with hook, body, and CTA.",
+      "Give me 20 faceless channel niches with RPM above $10."
+    ]
+  },
+  {
+    "title": "TikTok Product Reviewer",
+    "summary": "Create short AI-scripted TikToks reviewing trending Amazon/TikTok Shop products.",
+    "category": "Content",
+    "skillsNeeded": ["short-form-video", "storytelling"],
+    "assetsHelpful": ["tiktok-account"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["tiktok-shop", "ugc", "product-reviews"],
+    "exampleTasks": [
+      "Research trending TikTok Shop products",
+      "Generate short punchy scripts with AI",
+      "Shoot UGC-style reviews and include affiliate links"
+    ],
+    "examplePrompts": [
+      "Write a 30-second TikTok script for a trending LED water bottle targeting Gen Z.",
+      "Give me 10 TikTok product review hooks."
+    ]
+  },
+  {
+    "title": "Etsy Printables Store",
+    "summary": "Use AI + Canva to design printable templates and sell them passively on Etsy.",
+    "category": "Commerce",
+    "skillsNeeded": ["design", "research"],
+    "assetsHelpful": ["etsy-account", "canva"],
+    "difficulty": 2,
+    "timeToCash": 3,
+    "startupCost": 1,
+    "demandTags": ["etsy", "printables", "canva"],
+    "exampleTasks": [
+      "Research trending printable niches like planners or wall art",
+      "Design templates using Canva and AI-generated ideas",
+      "List them with SEO-optimized titles"
+    ],
+    "examplePrompts": [
+      "Give me 10 printable planner ideas trending on Etsy this month.",
+      "Generate product descriptions for a minimalist wedding seating chart template."
+    ]
+  },
+  {
+    "title": "Prompt Packs & Playbooks",
+    "summary": "Create niche-specific prompt bundles and sell them on Gumroad or Etsy.",
+    "category": "Digital Products",
+    "skillsNeeded": ["writing", "ai-usage"],
+    "assetsHelpful": ["gumroad-account"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["prompts", "gumroad", "digital-downloads"],
+    "exampleTasks": [
+      "Create prompt packs for niche audiences like realtors or YouTubers",
+      "Bundle prompts with instructions and use-cases",
+      "Sell through Gumroad or Etsy"
+    ],
+    "examplePrompts": [
+      "Give me 20 ChatGPT prompts for real estate agents to write better listings.",
+      "Structure a 30-prompt Notion template for YouTube scriptwriting."
+    ]
+  },
+  {
+    "title": "Notion Template Seller",
+    "summary": "Design Notion templates using AI research to identify trending productivity niches.",
+    "category": "Digital Products",
+    "skillsNeeded": ["notion", "design", "research"],
+    "assetsHelpful": ["gumroad", "notion"],
+    "difficulty": 2,
+    "timeToCash": 3,
+    "startupCost": 1,
+    "demandTags": ["notion", "templates", "productivity"],
+    "exampleTasks": [
+      "Research top-selling Notion templates",
+      "Build your own using AI for structure and copy",
+      "List on Gumroad with demo videos"
+    ],
+    "examplePrompts": [
+      "Analyze top 20 Notion templates on Gumroad for trends and pricing.",
+      "Generate the structure and descriptions for a Notion ‘Life OS’ dashboard."
+    ]
+  },
+  {
+    "title": "Podcast Content Repurposer",
+    "summary": "Turn podcast episodes into tweets, blog posts, reels using AI transcription and summarization.",
+    "category": "Services",
+    "skillsNeeded": ["writing", "editing", "content repurposing"],
+    "assetsHelpful": ["descript", "whisper", "canva"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["podcast", "repurposing", "short-form-content"],
+    "exampleTasks": [
+      "Transcribe episodes with Whisper or Descript",
+      "Summarize into threads, posts, or carousels",
+      "Offer this as a service to podcasters"
+    ],
+    "examplePrompts": [
+      "Summarize this podcast transcript into 5 viral tweets.",
+      "Extract 10 short clips with hooks from a 45-min podcast."
+    ]
+  },
+  {
+    "title": "LinkedIn Ghostwriter (AI Assisted)",
+    "summary": "Offer B2B content writing services for founders and executives using AI as co-writer.",
+    "category": "Services",
+    "skillsNeeded": ["writing", "linkedin"],
+    "assetsHelpful": ["linkedin", "chatgpt"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["linkedin", "ghostwriting", "b2b-content"],
+    "exampleTasks": [
+      "Interview client or review their content",
+      "Generate post drafts with AI",
+      "Edit to match voice and tone"
+    ],
+    "examplePrompts": [
+      "Draft 5 LinkedIn posts about SaaS growth with a conversational founder tone.",
+      "Summarize 3 blog posts into LinkedIn carousels."
+    ]
+  },
+  {
+    "title": "Resume & LinkedIn Optimizer",
+    "summary": "Use AI to rewrite resumes and LinkedIn profiles to help job seekers stand out.",
+    "category": "Services",
+    "skillsNeeded": ["editing", "career-coaching"],
+    "assetsHelpful": ["linkedin", "google-docs"],
+    "difficulty": 2,
+    "timeToCash": 1,
+    "startupCost": 1,
+    "demandTags": ["job-search", "resume", "career"],
+    "exampleTasks": [
+      "Collect client resume data",
+      "Rewrite using AI templates and keyword optimization",
+      "Deliver polished profiles with fast turnaround"
+    ],
+    "examplePrompts": [
+      "Rewrite this resume for a senior marketing manager role using SEO keywords.",
+      "Draft a LinkedIn 'About' section in a confident, authentic tone."
+    ]
+  },
+  {
+    "title": "TikTok Hook & Script Pack Service",
+    "summary": "Sell packs of viral TikTok hooks, captions, and script templates for creators.",
+    "category": "Digital Products",
+    "skillsNeeded": ["short-form-video", "copywriting"],
+    "assetsHelpful": ["tiktok", "gumroad"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["tiktok", "hooks", "scripts"],
+    "exampleTasks": [
+      "Generate viral hook lists using GPT",
+      "Package as editable Notion/Google Docs",
+      "Sell on Gumroad or Fiverr"
+    ],
+    "examplePrompts": [
+      "Generate 50 viral TikTok hooks for finance content creators.",
+      "Give me 10 short script structures for under 30s storytelling."
+    ]
+  },
+  {
+    "title": "Caption + Hashtag Generator Tool",
+    "summary": "Build a simple GPT-powered web tool that generates captions and hashtags for creators.",
+    "category": "SaaS",
+    "skillsNeeded": ["javascript", "frontend", "api-integration"],
+    "assetsHelpful": ["vercel", "openai-api"],
+    "difficulty": 3,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["tiktok", "instagram", "social-media-tools"],
+    "exampleTasks": [
+      "Create a simple UI with prompt input",
+      "Integrate OpenAI to generate captions and hashtags",
+      "Launch a freemium version"
+    ],
+    "examplePrompts": [
+      "Generate 10 Instagram captions and hashtags for a travel reel about Bali.",
+      "Write short, witty captions for TikTok beauty content."
+    ]
+  },
+  {
+    "title": "AI Research Concierge",
+    "summary": "Offer research services for entrepreneurs using AI to summarize and find data fast.",
+    "category": "Services",
+    "skillsNeeded": ["research", "writing"],
+    "assetsHelpful": ["chatgpt", "perplexity", "docs"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["market-research", "competitive-analysis", "startups"],
+    "exampleTasks": [
+      "Research industry trends",
+      "Summarize competitor data",
+      "Deliver structured reports"
+    ],
+    "examplePrompts": [
+      "Summarize top 10 AI startups in legal tech with funding and unique features.",
+      "Find and summarize the top 5 pain points for Shopify store owners in 2025."
+    ]
+  },
+  {
+    "title": "Digital Product Reviewer (Medium + Newsletter)",
+    "summary": "Use AI to review trending tools/products, write short articles, and monetize via affiliate.",
+    "category": "Content",
+    "skillsNeeded": ["writing", "tool-research"],
+    "assetsHelpful": ["medium", "substack"],
+    "difficulty": 2,
+    "timeToCash": 3,
+    "startupCost": 1,
+    "demandTags": ["medium", "affiliate", "product-reviews"],
+    "exampleTasks": [
+      "Pick trending AI tools weekly",
+      "Use GPT to draft structured reviews",
+      "Publish to Medium or newsletter"
+    ],
+    "examplePrompts": [
+      "Write a review article on a new AI writing tool in a witty but professional tone.",
+      "Summarize top 5 AI Chrome extensions trending this month."
+    ]
+  },
+  {
+    "title": "UGC Creator with AI Scriptwriting",
+    "summary": "Sell short-form content packages to brands by combining your personality with AI scripting.",
+    "category": "Content",
+    "skillsNeeded": ["short-form-video", "performance"],
+    "assetsHelpful": ["tiktok", "instagram"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["ugc", "brand-content", "tiktok-shop"],
+    "exampleTasks": [
+      "Get briefs from brands",
+      "Use AI to generate hook/script variations",
+      "Shoot content and deliver"
+    ],
+    "examplePrompts": [
+      "Write 5 UGC-style TikTok scripts for a new skincare serum targeting Gen Z.",
+      "Give me 10 variations of a ‘reaction style’ TikTok hook for a gadget."
+    ]
+  }
+]

@@ -1,0 +1,787 @@
+[
+  {
+    "title": "AI Newsletter Curator",
+    "summary": "Curate trending AI news, tools, and niche opportunities into a weekly newsletter and monetize through sponsorships and affiliate links.",
+    "category": "Content",
+    "skillsNeeded": ["writing", "research", "curation"],
+    "assetsHelpful": ["substack", "beehiiv", "email-list"],
+    "difficulty": 3,
+    "timeToCash": 4,
+    "startupCost": 1,
+    "demandTags": ["newsletter", "curation", "ai-tools"],
+    "exampleTasks": [
+      "Scan daily AI news using Perplexity/Feedly",
+      "Summarize top stories and tools",
+      "Distribute via email with CTA for affiliate offers"
+    ],
+    "examplePrompts": [
+      "Summarize today’s top 5 AI launches in a punchy newsletter intro.",
+      "Create a newsletter section highlighting 3 underrated AI tools with affiliate links."
+    ]
+  },
+  {
+    "title": "Midjourney Print Shop",
+    "summary": "Use Midjourney to generate unique artwork and sell prints, canvases, or merch through print-on-demand services.",
+    "category": "Commerce",
+    "skillsNeeded": ["prompt-engineering", "design", "ecommerce"],
+    "assetsHelpful": ["midjourney", "printful", "shopify"],
+    "difficulty": 3,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["midjourney", "print-on-demand", "art"],
+    "exampleTasks": [
+      "Generate themed collections (e.g., cosmic botanicals, vintage sci-fi)",
+      "Upload designs to print-on-demand platform",
+      "Create simple landing pages and run targeted ads"
+    ],
+    "examplePrompts": [
+      "Create a Midjourney prompt for a 'retro-futuristic botanical garden' poster.",
+      "Generate 20 variations of a 'celestial animal' art series."
+    ]
+  },
+  {
+    "title": "Micro-SaaS for Niche Industries",
+    "summary": "Build lightweight AI-powered web tools solving specific problems for industries (e.g., legal clause generator, real estate listing enhancer).",
+    "category": "SaaS",
+    "skillsNeeded": ["javascript", "api-integration", "ux-design"],
+    "assetsHelpful": ["openai-api", "vercel", "supabase"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["saas", "micro-apps", "niche-tools"],
+    "exampleTasks": [
+      "Identify niche with repetitive manual tasks",
+      "Prototype a GPT-based solution with simple UI",
+      "Launch freemium model with Stripe billing"
+    ],
+    "examplePrompts": [
+      "List 10 tedious tasks in real estate that could be automated with GPT.",
+      "Draft the system prompt for a 'contract clause generator' specialized in commercial leases."
+    ]
+  },
+  {
+    "title": "YouTube Script Pack Marketplace",
+    "summary": "Sell packs of AI-generated YouTube scripts and hooks for different niches to creators who want plug-and-play content.",
+    "category": "Digital Products",
+    "skillsNeeded": ["writing", "storytelling", "niche-research"],
+    "assetsHelpful": ["gumroad", "notion"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["youtube", "scripts", "content-creators"],
+    "exampleTasks": [
+      "Generate themed script packs (e.g., productivity, tech reviews, finance)",
+      "Bundle in Notion/Docs with structure and CTA templates",
+      "Sell through Gumroad or Shopify"
+    ],
+    "examplePrompts": [
+      "Generate 5 YouTube video scripts for a personal finance channel with hook-body-CTA structure.",
+      "Give me 20 viral YouTube hooks for tech reviews."
+    ]
+  },
+  {
+    "title": "Local Business AI Packages",
+    "summary": "Offer pre-built AI solutions for local businesses: chatbot FAQ, review response automation, blog post generation.",
+    "category": "Services",
+    "skillsNeeded": ["client-management", "ai-tooling", "basic-development"],
+    "assetsHelpful": ["chatgpt", "zapier", "notion"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["local-business", "chatbot", "automation"],
+    "exampleTasks": [
+      "Identify service businesses lacking content/automation",
+      "Create simple chatbot templates and content workflows",
+      "Pitch pre-packaged services with monthly retainer"
+    ],
+    "examplePrompts": [
+      "Draft a restaurant FAQ chatbot script for common customer questions.",
+      "Generate 10 blog titles for a local plumbing business to rank in Google."
+    ]
+  },
+  {
+    "title": "E-Learning Course Co-Creation",
+    "summary": "Partner with experts to build online courses using AI for research, structure, and production — then split profits.",
+    "category": "Services",
+    "skillsNeeded": ["instructional-design", "editing", "ai-research"],
+    "assetsHelpful": ["loom", "chatgpt", "teachable"],
+    "difficulty": 4,
+    "timeToCash": 4,
+    "startupCost": 2,
+    "demandTags": ["online-courses", "elearning", "knowledge-commerce"],
+    "exampleTasks": [
+      "Outline course structure using GPT",
+      "Generate lesson drafts and supporting materials",
+      "Partner with domain experts to record modules"
+    ],
+    "examplePrompts": [
+      "Create a 6-module course outline for 'AI for Realtors' with key takeaways and exercises.",
+      "Generate lesson scripts and quizzes for a productivity course."
+    ]
+  },
+  {
+    "title": "Data Enrichment as a Service",
+    "summary": "Use AI to clean, deduplicate, and enrich datasets for businesses — high demand in sales, marketing, and recruiting.",
+    "category": "Services",
+    "skillsNeeded": ["data-cleaning", "automation", "api"],
+    "assetsHelpful": ["python", "openai-api", "notion"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["data-enrichment", "sales", "b2b"],
+    "exampleTasks": [
+      "Take messy spreadsheets and enrich company info using GPT or APIs",
+      "Build repeatable cleaning workflows",
+      "Sell per-record or per-project services"
+    ],
+    "examplePrompts": [
+      "Standardize these company names and enrich with industry + HQ location.",
+      "Remove duplicates and infer missing job titles from LinkedIn bios."
+    ]
+  },
+  {
+    "title": "AI Landing Page Builder",
+    "summary": "Create a micro SaaS tool that generates optimized landing pages using GPT for copy and templates for design.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "copywriting", "api-integration"],
+    "assetsHelpful": ["vercel", "openai-api"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["landing-pages", "copywriting", "web-tools"],
+    "exampleTasks": [
+      "Design a simple form-based UI for users to describe their offer",
+      "Use GPT to generate hero copy, features, and CTAs",
+      "Deploy with Stripe subscriptions for pro users"
+    ],
+    "examplePrompts": [
+      "Generate high-converting hero copy for a SaaS landing page targeting fitness coaches.",
+      "List 10 landing page layouts that work for lead generation."
+    ]
+  },
+  {
+    "title": "Script-to-Shorts Repurposing Studio",
+    "summary": "Offer a service that turns long-form YouTube scripts or podcast transcripts into short-form TikToks and Reels using AI.",
+    "category": "Services",
+    "skillsNeeded": ["video-editing", "short-form-storytelling", "ai-tools"],
+    "assetsHelpful": ["descript", "capcut", "chatgpt"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["content-repurposing", "shorts", "tiktok"],
+    "exampleTasks": [
+      "Take a 10-minute script and slice it into 3–5 viral short scripts",
+      "Generate captions, hashtags, and thumbnails",
+      "Offer subscription packages for creators"
+    ],
+    "examplePrompts": [
+      "Turn this YouTube transcript into 5 TikTok scripts with engaging hooks.",
+      "Generate caption + hashtag combos for short-form clips."
+    ]
+  },
+  {
+    "title": "Industry Trend Reports with AI",
+    "summary": "Create and sell monthly niche market reports using GPT for synthesis and data visualization tools for charts.",
+    "category": "Digital Products",
+    "skillsNeeded": ["research", "writing", "data-visualization"],
+    "assetsHelpful": ["chatgpt", "canva", "gumroad"],
+    "difficulty": 4,
+    "timeToCash": 4,
+    "startupCost": 2,
+    "demandTags": ["trend-reports", "market-research", "b2b"],
+    "exampleTasks": [
+      "Aggregate niche data from APIs and web sources",
+      "Use GPT to summarize insights and highlight opportunities",
+      "Package reports as PDFs and sell via Gumroad or subscription"
+    ],
+    "examplePrompts": [
+      "Summarize the top 10 growth trends in the creator economy this quarter.",
+      "Generate a structured market report outline for the Web3 gaming niche."
+    ]
+  }
+]
+🔥 That’s 10 fresh ways (Paths 1–10) — blending newsletters, SaaS tools, service models, content packs, and B2B plays.
+
+Do you want me to drop Part 2 (11–20) right away?
+
+
+
+
+
+
+
+You said:
+y'
+
+
+ChatGPT said:
+💥 Buckle up, Big Daddy — here comes Part 2 of 5 — another 10 fresh AI money-making paths (11 – 20) in raw JSON format. Copy-paste straight into your seeder, and watch the AI Income Pathfinder opportunity library grow like your passive income dreams. 🌱💸
+
+json
+Copy code
+[
+  {
+    "title": "Automated Webinar Generator",
+    "summary": "Use AI to generate, script, and design evergreen webinars for course creators and coaches.",
+    "category": "Services",
+    "skillsNeeded": ["copywriting", "presentation-design", "ai-tools"],
+    "assetsHelpful": ["chatgpt", "canva", "loom"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["webinars", "courses", "funnels"],
+    "exampleTasks": [
+      "Interview the client and outline webinar structure",
+      "Use AI to write the entire script and slides",
+      "Deliver ready-to-record or done-for-you webinar decks"
+    ],
+    "examplePrompts": [
+      "Generate a 45-minute webinar script for a productivity course, with clear sections and CTAs.",
+      "Create a slide outline for a webinar funnel targeting busy professionals."
+    ]
+  },
+  {
+    "title": "AI TikTok Caption + Hook Generator",
+    "summary": "Build a web app that generates viral TikTok hooks and captions for creators, using GPT and trend data.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "api-integration", "copywriting"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["tiktok", "hooks", "social-media-tools"],
+    "exampleTasks": [
+      "Design a simple interface where creators input their niche",
+      "Generate 10 hook + caption combos instantly",
+      "Offer freemium tier with upgrade for bulk generation"
+    ],
+    "examplePrompts": [
+      "Generate 10 TikTok hooks and captions for a beauty niche tutorial.",
+      "Write punchy, curiosity-driven captions for a tech tips account."
+    ]
+  },
+  {
+    "title": "Chatbot Personality Designer",
+    "summary": "Offer businesses or creators the service of designing unique chatbot personalities with tone, style, and workflows.",
+    "category": "Services",
+    "skillsNeeded": ["prompt-engineering", "ux-writing", "persona-design"],
+    "assetsHelpful": ["chatgpt", "notion", "zapier"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["chatbots", "branding", "customer-service"],
+    "exampleTasks": [
+      "Interview client to define personality and use cases",
+      "Design system prompts and workflows",
+      "Deploy via ChatGPT, WhatsApp bots, or web widgets"
+    ],
+    "examplePrompts": [
+      "Create a brand voice and chatbot system prompt for a luxury skincare brand.",
+      "Design a friendly, helpful persona for a SaaS onboarding bot."
+    ]
+  },
+  {
+    "title": "AI Sales Page Copywriter",
+    "summary": "Use AI to write high-converting sales pages and VSL scripts for digital product owners and coaches.",
+    "category": "Services",
+    "skillsNeeded": ["copywriting", "funnels", "ai-tools"],
+    "assetsHelpful": ["chatgpt", "notion"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["sales-copy", "funnels", "digital-products"],
+    "exampleTasks": [
+      "Collect client offer details via questionnaire",
+      "Use AI to generate headline, body, social proof, and CTAs",
+      "Edit and deliver in polished format"
+    ],
+    "examplePrompts": [
+      "Write a high-converting sales page for a 6-week fitness challenge.",
+      "Generate 5 variations of hero headlines for an online course landing page."
+    ]
+  },
+  {
+    "title": "AI-Powered Job Board",
+    "summary": "Create a niche job board where AI curates and summarizes the best job listings daily.",
+    "category": "SaaS",
+    "skillsNeeded": ["scraping", "api", "frontend"],
+    "assetsHelpful": ["openai-api", "vercel", "supabase"],
+    "difficulty": 4,
+    "timeToCash": 4,
+    "startupCost": 3,
+    "demandTags": ["job-board", "niche", "ai-curation"],
+    "exampleTasks": [
+      "Scrape jobs from multiple sources",
+      "Summarize job listings with GPT for readability",
+      "Monetize through featured listings or subscriptions"
+    ],
+    "examplePrompts": [
+      "Summarize this job listing into 3 key bullet points: role, skills, salary.",
+      "Generate SEO meta descriptions for job board pages."
+    ]
+  },
+  {
+    "title": "Brand Naming & Messaging Studio",
+    "summary": "Offer AI-assisted brand naming, tagline creation, and messaging kits for startups and creators.",
+    "category": "Services",
+    "skillsNeeded": ["brand-strategy", "copywriting", "prompt-engineering"],
+    "assetsHelpful": ["chatgpt", "notion", "figma"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["branding", "copywriting", "startups"],
+    "exampleTasks": [
+      "Interview client to define positioning",
+      "Use GPT to generate name/tagline sets and storylines",
+      "Package deliverables as a brand kit"
+    ],
+    "examplePrompts": [
+      "Generate 10 brand names for a health tech startup that sound premium.",
+      "Write 5 tagline options for an eco-friendly clothing brand."
+    ]
+  },
+  {
+    "title": "Newsletter-to-Twitter Ghostwriter",
+    "summary": "Turn long-form newsletters into viral Twitter/X threads for creators and charge per thread or subscription.",
+    "category": "Services",
+    "skillsNeeded": ["writing", "editing", "social-media"],
+    "assetsHelpful": ["chatgpt", "twitter"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["ghostwriting", "twitter", "repurposing"],
+    "exampleTasks": [
+      "Take a weekly Substack issue and distill it into punchy threads",
+      "Format for maximum virality with hooks and spacing",
+      "Offer ghostwriting retainers to creators"
+    ],
+    "examplePrompts": [
+      "Condense this 1000-word newsletter into a 10-tweet viral thread.",
+      "Generate 3 alternative hooks for the opening tweet."
+    ]
+  },
+  {
+    "title": "Automated Niche Directory",
+    "summary": "Use AI to generate and maintain curated directories (tools, influencers, products) in specific niches.",
+    "category": "SaaS",
+    "skillsNeeded": ["scraping", "api-integration", "frontend"],
+    "assetsHelpful": ["openai-api", "vercel", "supabase"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["directories", "niche", "content-curation"],
+    "exampleTasks": [
+      "Scrape niche resources and clean data",
+      "Use GPT to categorize and summarize each entry",
+      "Offer searchable directory with affiliate links or subscriptions"
+    ],
+    "examplePrompts": [
+      "Summarize this AI tool into a 50-word directory listing with key features.",
+      "Categorize this list of 200 URLs into 10 niche categories."
+    ]
+  },
+  {
+    "title": "AI-Enhanced Voiceover Service",
+    "summary": "Offer voiceover services using AI-generated voices, ideal for content creators, audiobook authors, and ad agencies.",
+    "category": "Services",
+    "skillsNeeded": ["audio-editing", "voiceover", "ai-tools"],
+    "assetsHelpful": ["play.ht", "elevenlabs", "descript"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["voiceover", "content-creation", "ads"],
+    "exampleTasks": [
+      "Receive scripts and generate professional AI voiceovers",
+      "Mix and deliver in multiple formats",
+      "Sell packages per word, minute, or project"
+    ],
+    "examplePrompts": [
+      "Convert this 1-minute script into a warm, friendly female voice.",
+      "List 5 brand tones for voiceover: authoritative, playful, casual, etc."
+    ]
+  },
+  {
+    "title": "AI-Powered Product Launch Kits",
+    "summary": "Sell launch kits that include copy, visuals, hashtags, and press release drafts generated by AI for indie founders.",
+    "category": "Digital Products",
+    "skillsNeeded": ["marketing", "copywriting", "design"],
+    "assetsHelpful": ["chatgpt", "canva", "gumroad"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["product-launch", "marketing", "indie-hackers"],
+    "exampleTasks": [
+      "Create reusable launch kit templates",
+      "Use GPT to personalize for different industries",
+      "Sell as one-off downloads or subscription packs"
+    ],
+    "examplePrompts": [
+      "Generate a product launch tweet thread, press release, and email for a new Chrome extension.",
+      "Write 10 hashtags and captions for a mobile app launch."
+    ]
+  }
+]
+🔥 That’s 20 down, 30 to go.
+This batch leaned into chatbot services, launch kits, sales copy, and niche SaaS plays — a nice balance between creator economy and B2B.
+
+Want me to hit you with Part 3 (21 – 30) now?
+
+
+
+
+
+
+
+You said:
+yes, send al raw no stoping
+
+
+ChatGPT said:
+Alright Big Daddy 😎 — let’s drop the ENTIRE remaining 30 in one clean JSON block (Parts 3–5), so you can seed your database in one go like a boss.
+
+Here’s Paths 21–50, raw JSON — no interruptions, no fluff. Just pure money-making fire for AI Income Pathfinder 🔥
+
+json
+Copy code
+[
+  {
+    "title": "AI Influencer Outreach Assistant",
+    "summary": "Offer brands or creators automated influencer outreach using GPT for personalized DMs and email pitches.",
+    "category": "Services",
+    "skillsNeeded": ["outreach", "copywriting", "ai-tools"],
+    "assetsHelpful": ["chatgpt", "snov.io", "notion"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["influencer-marketing", "outreach", "brands"],
+    "exampleTasks": [
+      "Find influencers in specific niches",
+      "Use GPT to personalize outreach messages",
+      "Track responses in Notion or CRM"
+    ],
+    "examplePrompts": [
+      "Write a personalized outreach email to a mid-tier fitness influencer for a brand collab.",
+      "Generate 10 DM templates for reaching out to creators about affiliate programs."
+    ]
+  },
+  {
+    "title": "AI-Powered Legal Template Generator",
+    "summary": "Build a tool or service that generates basic contracts, NDAs, and agreements tailored to user input.",
+    "category": "SaaS",
+    "skillsNeeded": ["prompt-engineering", "legal-knowledge", "frontend"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["legal", "contracts", "b2b"],
+    "exampleTasks": [
+      "Collect user info via forms",
+      "Use GPT to generate draft legal documents",
+      "Add disclaimers and upsell legal review services"
+    ],
+    "examplePrompts": [
+      "Draft a mutual NDA for a startup and contractor relationship.",
+      "Generate a freelance service agreement with milestone payment clauses."
+    ]
+  },
+  {
+    "title": "Course Outline Generator",
+    "summary": "Sell a SaaS or service that generates detailed course outlines and lesson plans for creators and coaches.",
+    "category": "SaaS",
+    "skillsNeeded": ["instructional-design", "frontend", "copywriting"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["courses", "education", "content-creators"],
+    "exampleTasks": [
+      "Build a simple UI to collect topic/goals",
+      "Use GPT to generate outlines, module titles, and lesson ideas",
+      "Offer freemium with upsell for full export"
+    ],
+    "examplePrompts": [
+      "Generate a 6-module course outline on 'AI for copywriters' with exercises.",
+      "List 10 lesson titles for a beginner crypto course."
+    ]
+  },
+  {
+    "title": "YouTube SEO Optimization Service",
+    "summary": "Offer creators AI-powered title, description, and tag optimization for YouTube videos.",
+    "category": "Services",
+    "skillsNeeded": ["seo", "copywriting", "youtube"],
+    "assetsHelpful": ["chatgpt", "tubebuddy"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["youtube", "seo", "video-optimization"],
+    "exampleTasks": [
+      "Take raw titles/descriptions and rewrite them for click-through rate",
+      "Suggest tags and keywords",
+      "Offer as per-video service or monthly retainer"
+    ],
+    "examplePrompts": [
+      "Rewrite this YouTube title for higher CTR: '5 AI Tools for Productivity'.",
+      "Generate tags and SEO description for a finance niche video."
+    ]
+  },
+  {
+    "title": "AI-Powered Recruiting Assistant",
+    "summary": "Provide AI-summarized candidate profiles and outreach messages for recruiters.",
+    "category": "Services",
+    "skillsNeeded": ["recruiting", "copywriting", "data-cleaning"],
+    "assetsHelpful": ["chatgpt", "linkedin"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["recruiting", "b2b", "automation"],
+    "exampleTasks": [
+      "Summarize LinkedIn profiles into quick recruiter briefs",
+      "Generate personalized outreach messages",
+      "Automate shortlisting with GPT"
+    ],
+    "examplePrompts": [
+      "Summarize this LinkedIn profile into a recruiter brief with key skills.",
+      "Generate a personalized outreach email to a senior data scientist candidate."
+    ]
+  },
+  {
+    "title": "AI Script Coverage & Editing Service",
+    "summary": "Offer AI-assisted screenplay analysis, coverage, and editing suggestions for writers and filmmakers.",
+    "category": "Services",
+    "skillsNeeded": ["scriptwriting", "editing", "prompt-engineering"],
+    "assetsHelpful": ["chatgpt", "final-draft"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["film", "writing", "screenplays"],
+    "exampleTasks": [
+      "Upload and analyze screenplays",
+      "Use GPT to provide structured coverage",
+      "Offer line editing and story suggestions"
+    ],
+    "examplePrompts": [
+      "Analyze this screenplay and give notes on pacing, character arcs, and dialogue.",
+      "Summarize the logline, strengths, and weaknesses of this script."
+    ]
+  },
+  {
+    "title": "Automated Social Carousel Designer",
+    "summary": "Build a tool that generates social media carousel posts from bullet points or text.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "design", "api-integration"],
+    "assetsHelpful": ["openai-api", "canva-api", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["social-media", "carousels", "design-tools"],
+    "exampleTasks": [
+      "Convert text into multi-slide carousels",
+      "Auto-generate headline slides and layouts",
+      "Offer exports in PNG/PDF formats"
+    ],
+    "examplePrompts": [
+      "Generate 5-slide carousel copy for 'Top 5 AI Tools for Entrepreneurs'.",
+      "Turn this blog post into a carousel outline."
+    ]
+  },
+  {
+    "title": "TikTok Niche Research Reports",
+    "summary": "Sell AI-generated reports that analyze TikTok niches for creators, products, or agencies.",
+    "category": "Digital Products",
+    "skillsNeeded": ["research", "tiktok", "trend-analysis"],
+    "assetsHelpful": ["chatgpt", "exolyt"],
+    "difficulty": 3,
+    "timeToCash": 3,
+    "startupCost": 1,
+    "demandTags": ["tiktok", "niche-research", "trends"],
+    "exampleTasks": [
+      "Analyze trending niches by views and engagement",
+      "Summarize insights with GPT",
+      "Package as downloadable reports"
+    ],
+    "examplePrompts": [
+      "Analyze TikTok trends in the home decor niche and summarize top product themes.",
+      "Generate a niche opportunity report for 'AI tools for students'."
+    ]
+  },
+  {
+    "title": "Email Sequence Generator",
+    "summary": "Create a SaaS or service that generates full email marketing sequences based on product or campaign details.",
+    "category": "SaaS",
+    "skillsNeeded": ["email-marketing", "copywriting", "frontend"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["email-marketing", "funnels", "copywriting"],
+    "exampleTasks": [
+      "Build an interface where users input product details",
+      "Generate 5–7 email sequences with GPT",
+      "Offer free preview and upsell export"
+    ],
+    "examplePrompts": [
+      "Generate a 5-email welcome sequence for a new AI tool for marketers.",
+      "Write a re-engagement campaign for a DTC skincare brand."
+    ]
+  },
+  {
+    "title": "Podcast Show Notes Generator",
+    "summary": "Offer automated show notes and timestamp summaries for podcasters.",
+    "category": "Services",
+    "skillsNeeded": ["transcription", "writing", "editing"],
+    "assetsHelpful": ["whisper", "chatgpt", "descript"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["podcasts", "repurposing", "transcription"],
+    "exampleTasks": [
+      "Transcribe podcast episodes",
+      "Summarize key topics with GPT",
+      "Deliver formatted show notes with timestamps"
+    ],
+    "examplePrompts": [
+      "Summarize this podcast transcript into show notes with timestamps and bullet points.",
+      "List 5 quotable moments with timestamps."
+    ]
+  },
+  {
+    "title": "AI Spreadsheet Formula Helper",
+    "summary": "Build a tool that generates complex Excel or Google Sheets formulas from plain language.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "spreadsheet-knowledge", "api"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["spreadsheets", "productivity", "b2b"],
+    "exampleTasks": [
+      "Take user requests and convert them to formulas using GPT",
+      "Offer copy-to-clipboard and explanations",
+      "Monetize with pro export tiers"
+    ],
+    "examplePrompts": [
+      "Generate a Google Sheets formula to calculate the weighted average of multiple columns.",
+      "Explain this Excel formula in plain English."
+    ]
+  },
+  {
+    "title": "Instagram Caption Pack Seller",
+    "summary": "Sell themed packs of AI-generated captions and hashtags to social media managers and influencers.",
+    "category": "Digital Products",
+    "skillsNeeded": ["copywriting", "social-media", "research"],
+    "assetsHelpful": ["chatgpt", "gumroad"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["instagram", "captions", "social-media"],
+    "exampleTasks": [
+      "Generate 100+ captions for a niche",
+      "Bundle into themed packs (e.g., wellness, beauty, biz)",
+      "Sell via Gumroad or Etsy"
+    ],
+    "examplePrompts": [
+      "Generate 50 Instagram captions and hashtags for a sustainable fashion brand.",
+      "Write witty captions for a travel influencer."
+    ]
+  },
+  {
+    "title": "Automated Resume Tailoring Tool",
+    "summary": "Create a web app that tailors resumes to job descriptions using AI.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "copywriting", "resume-knowledge"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 3,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["resumes", "career", "jobs"],
+    "exampleTasks": [
+      "Upload resume + job description",
+      "Use GPT to tailor content and highlight relevant skills",
+      "Offer freemium edits with upsells"
+    ],
+    "examplePrompts": [
+      "Tailor this resume to the following job description for a marketing manager role.",
+      "Highlight keywords and rewrite bullet points for ATS optimization."
+    ]
+  },
+  {
+    "title": "Midjourney Prompt Marketplace",
+    "summary": "Create or use an existing marketplace to sell unique, well-structured Midjourney prompts for art and design niches.",
+    "category": "Commerce",
+    "skillsNeeded": ["prompt-engineering", "design"],
+    "assetsHelpful": ["midjourney", "gumroad"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["midjourney", "prompts", "digital-art"],
+    "exampleTasks": [
+      "Develop themed prompt packs for trending aesthetics",
+      "List them on marketplaces or your own site",
+      "Offer free samples to grow traffic"
+    ],
+    "examplePrompts": [
+      "Write 10 Midjourney prompts for a 'Neo-Baroque sci-fi cityscape' collection.",
+      "Create structured prompt templates for fashion illustrations."
+    ]
+  },
+  {
+    "title": "TikTok Ad Script Service",
+    "summary": "Write AI-assisted ad scripts for TikTok UGC and DTC brands.",
+    "category": "Services",
+    "skillsNeeded": ["short-form-video", "copywriting", "ugc"],
+    "assetsHelpful": ["chatgpt", "tiktok"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["tiktok", "ads", "ugc"],
+    "exampleTasks": [
+      "Analyze winning ads in a niche",
+      "Generate 5–10 ad scripts with hooks and CTA",
+      "Deliver as Notion packs or PDF"
+    ],
+    "examplePrompts": [
+      "Write 5 TikTok ad scripts for a teeth whitening product targeting Gen Z.",
+      "Generate 10 viral hooks for UGC skincare videos."
+    ]
+  },
+  {
+    "title": "AI Productized Consulting",
+    "summary": "Package your knowledge into repeatable AI workflows and sell as productized services or SOP packs.",
+    "category": "Services",
+    "skillsNeeded": ["consulting", "prompt-engineering", "systems-thinking"],
+    "assetsHelpful": ["notion", "chatgpt", "gumroad"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["consulting", "systems", "sops"],
+    "exampleTasks": [
+      "Identify repetitive consulting deliverables",
+      "Convert them into GPT-driven SOPs or mini-apps",
+      "Sell or license the systems"
+    ],
+    "examplePrompts": [
+      "Turn this content strategy consulting offer into a step-by-step GPT workflow.",
+      "Write a system prompt for an AI that audits websites and generates strategy reports."
+    ]
+  },
+  {
+    "title": "AI Flashcard Generator for Education",
+    "summary": "Build a web tool that turns textbook PDFs or text into flashcards for students.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "education", "nlp"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["education", "flashcards", "students"],
+    "exampleTasks": [
+      "Allow upload of text or PDF",
+      "Use GPT to generate Q&A flashcards",
+      "Offer spaced-repetition or Anki export"
+    ],
+    "examplePrompts": [
+      "Generate 50 flashcards from this chapter on photosynthesis for high school students.",
+      "Create multiple-choice questions with correct answers highlighted."
+    ]
+  }
+]

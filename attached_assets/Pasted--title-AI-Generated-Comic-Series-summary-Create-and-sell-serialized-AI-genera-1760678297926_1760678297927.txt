@@ -1,0 +1,342 @@
+[
+  {
+    "title": "AI-Generated Comic Series",
+    "summary": "Create and sell serialized AI-generated comics using tools like Midjourney for art and GPT for storylines.",
+    "category": "Content",
+    "skillsNeeded": ["storytelling", "prompt-engineering", "basic-design"],
+    "assetsHelpful": ["midjourney", "chatgpt", "gumroad"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["comics", "storytelling", "digital-art"],
+    "exampleTasks": [
+      "Develop characters and storyline arcs with GPT",
+      "Generate consistent art styles with Midjourney",
+      "Release weekly issues via Gumroad or Patreon"
+    ],
+    "examplePrompts": [
+      "Write a 5-episode arc for a sci-fi detective comic.",
+      "Generate Midjourney prompts for consistent character art of a cyberpunk heroine."
+    ]
+  },
+  {
+    "title": "Custom GPT Bot Builder",
+    "summary": "Offer businesses custom GPT-powered bots trained on their knowledge base for customer support or sales.",
+    "category": "Services",
+    "skillsNeeded": ["prompt-engineering", "chatbot-design", "integration"],
+    "assetsHelpful": ["openai-api", "zapier", "docs"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["chatbots", "b2b", "customer-support"],
+    "exampleTasks": [
+      "Collect and structure client data",
+      "Design GPT system prompt and fallback flows",
+      "Deploy bot on website or Slack"
+    ],
+    "examplePrompts": [
+      "Write a system prompt for a SaaS customer support chatbot trained on FAQs.",
+      "Design fallback logic for when GPT doesn't know the answer."
+    ]
+  },
+  {
+    "title": "AI-Powered Cold Email Personalization",
+    "summary": "Provide hyper-personalized cold email writing services for sales teams using GPT to scan LinkedIn bios and websites.",
+    "category": "Services",
+    "skillsNeeded": ["sales", "copywriting", "automation"],
+    "assetsHelpful": ["chatgpt", "linkedin", "phantombuster"],
+    "difficulty": 4,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["cold-email", "b2b", "outreach"],
+    "exampleTasks": [
+      "Scrape prospect data from LinkedIn",
+      "Generate personalized intro lines and CTAs",
+      "Deliver CSV or integrate with email tools"
+    ],
+    "examplePrompts": [
+      "Write a personalized cold email for a SaaS founder based on their LinkedIn bio.",
+      "Generate 3 punchy outreach variations for a marketing agency."
+    ]
+  },
+  {
+    "title": "Faceless TikTok News Channel",
+    "summary": "Launch an AI-scripted, text-to-speech TikTok channel covering trending daily news with faceless visuals.",
+    "category": "Content",
+    "skillsNeeded": ["scriptwriting", "video-editing", "trend-analysis"],
+    "assetsHelpful": ["chatgpt", "pictory", "tiktok"],
+    "difficulty": 3,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["tiktok", "news", "automation"],
+    "exampleTasks": [
+      "Use GPT to generate 30-second trending news summaries",
+      "Overlay stock footage and AI voiceover",
+      "Publish multiple videos daily for rapid growth"
+    ],
+    "examplePrompts": [
+      "Summarize today's top tech stories in under 100 words for Gen Z.",
+      "Write a TikTok script for a breaking AI regulation story."
+    ]
+  },
+  {
+    "title": "AI Video Meme Generator",
+    "summary": "Build a tool that lets users upload a clip and automatically generates meme captions and formats.",
+    "category": "SaaS",
+    "skillsNeeded": ["frontend", "video-editing", "nlp"],
+    "assetsHelpful": ["openai-api", "ffmpeg", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["memes", "video-tools", "content-creators"],
+    "exampleTasks": [
+      "Accept user clip and transcribe",
+      "Use GPT to generate funny meme captions",
+      "Render meme-style overlays"
+    ],
+    "examplePrompts": [
+      "Generate 5 meme caption ideas for this clip of a cat knocking over a plant.",
+      "Write sarcastic text overlays in TikTok meme style."
+    ]
+  },
+  {
+    "title": "AI Investment Research Briefs",
+    "summary": "Sell subscription-based AI-generated investment briefs summarizing sectors, stocks, or crypto trends.",
+    "category": "Digital Products",
+    "skillsNeeded": ["research", "finance", "writing"],
+    "assetsHelpful": ["chatgpt", "apis", "substack"],
+    "difficulty": 5,
+    "timeToCash": 4,
+    "startupCost": 3,
+    "demandTags": ["finance", "investing", "research"],
+    "exampleTasks": [
+      "Aggregate financial news and data",
+      "Use GPT to summarize insights and risks",
+      "Distribute via email or dashboard"
+    ],
+    "examplePrompts": [
+      "Summarize today's major moves in AI stocks in 3 bullet points each.",
+      "Write a weekly investment brief for the crypto layer-2 sector."
+    ]
+  },
+  {
+    "title": "Niche Reddit Summarizer",
+    "summary": "Build a service that summarizes trending Reddit threads in niche communities for newsletters, creators, or businesses.",
+    "category": "SaaS",
+    "skillsNeeded": ["scraping", "nlp", "frontend"],
+    "assetsHelpful": ["reddit-api", "openai-api", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 2,
+    "demandTags": ["reddit", "trends", "content-curation"],
+    "exampleTasks": [
+      "Fetch trending threads in selected subreddits",
+      "Summarize key insights and discussions",
+      "Package into daily/weekly briefs"
+    ],
+    "examplePrompts": [
+      "Summarize this r/Entrepreneur thread into 5 actionable takeaways.",
+      "Extract top opinions and recurring themes from this discussion."
+    ]
+  },
+  {
+    "title": "Voice Clone Influencer Packages",
+    "summary": "Offer influencers or creators the ability to clone their voice with AI and monetize content production at scale.",
+    "category": "Services",
+    "skillsNeeded": ["audio-engineering", "ai-tools", "marketing"],
+    "assetsHelpful": ["elevenlabs", "play.ht"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["voice-cloning", "influencers", "content-automation"],
+    "exampleTasks": [
+      "Record clean voice dataset",
+      "Create and test AI clone",
+      "Sell packs of voice content or licensing deals"
+    ],
+    "examplePrompts": [
+      "Prepare a cloning script that captures a wide vocal range.",
+      "Write 10 short scripts to generate content using the cloned voice."
+    ]
+  },
+  {
+    "title": "AI Side Hustle Audit Service",
+    "summary": "Offer 1:1 or asynchronous audits of people's business ideas, using GPT to evaluate market fit, monetization, and tools.",
+    "category": "Services",
+    "skillsNeeded": ["business-strategy", "prompt-engineering", "market-analysis"],
+    "assetsHelpful": ["chatgpt", "notion"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["side-hustles", "consulting", "validation"],
+    "exampleTasks": [
+      "Collect info via form",
+      "Run GPT evaluations and recommendations",
+      "Deliver structured PDF report"
+    ],
+    "examplePrompts": [
+      "Evaluate this business idea for market demand, monetization potential, and competition.",
+      "Suggest 3 ways to monetize this niche with AI tools."
+    ]
+  },
+  {
+    "title": "AI TikTok Script Marketplace",
+    "summary": "Create a platform where creators can buy and sell GPT-generated viral TikTok scripts in different niches.",
+    "category": "Commerce",
+    "skillsNeeded": ["platform-building", "writing", "tiktok"],
+    "assetsHelpful": ["openai-api", "gumroad", "vercel"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["tiktok", "marketplace", "scripts"],
+    "exampleTasks": [
+      "Allow sellers to upload script packs",
+      "Generate previews using GPT",
+      "Take commissions from sales"
+    ],
+    "examplePrompts": [
+      "Generate a 30-second viral script for a productivity niche TikTok.",
+      "Write 5 hook variations for an ecom video."
+    ]
+  },
+  {
+    "title": "AI-Powered PR Pitch Generator",
+    "summary": "Sell a tool that helps startups craft perfect PR pitches and press releases using GPT.",
+    "category": "SaaS",
+    "skillsNeeded": ["copywriting", "pr", "frontend"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["pr", "press-releases", "startups"],
+    "exampleTasks": [
+      "Collect startup info and audience goals",
+      "Generate 3 PR pitch variations and press releases",
+      "Allow easy export for email outreach"
+    ],
+    "examplePrompts": [
+      "Write a compelling PR pitch email for a YC startup launching an AI app.",
+      "Draft a press release for a new productivity SaaS."
+    ]
+  },
+  {
+    "title": "AI Subtitles & Captions Agency",
+    "summary": "Provide fast, accurate, AI-powered subtitles and captions for creators, agencies, and brands.",
+    "category": "Services",
+    "skillsNeeded": ["transcription", "video-editing", "ai-tools"],
+    "assetsHelpful": ["whisper", "descript", "capcut"],
+    "difficulty": 2,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["captions", "video", "accessibility"],
+    "exampleTasks": [
+      "Transcribe and clean up videos quickly with Whisper",
+      "Format captions for TikTok, Reels, and YouTube",
+      "Offer subscription captioning services"
+    ],
+    "examplePrompts": [
+      "Transcribe this 1-minute video with timestamps and emojis.",
+      "Format captions for a TikTok-style pop caption video."
+    ]
+  },
+  {
+    "title": "B2B Lead Magnet Generator",
+    "summary": "Build a SaaS that generates full lead magnets (PDFs, ebooks, reports) based on business niche and goals.",
+    "category": "SaaS",
+    "skillsNeeded": ["copywriting", "frontend", "design"],
+    "assetsHelpful": ["openai-api", "canva-api"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["lead-generation", "b2b", "ebooks"],
+    "exampleTasks": [
+      "Collect niche and positioning",
+      "Generate structured outline and content with GPT",
+      "Render design via Canva API"
+    ],
+    "examplePrompts": [
+      "Generate a lead magnet outline for a B2B SaaS targeting HR teams.",
+      "Write a 5-page whitepaper on trends in remote work."
+    ]
+  },
+  {
+    "title": "AI Virtual Interior Designer",
+    "summary": "Offer a service that takes photos of rooms and returns AI-generated interior design mockups in different styles.",
+    "category": "Services",
+    "skillsNeeded": ["design", "prompt-engineering", "customer-service"],
+    "assetsHelpful": ["midjourney", "chatgpt", "photoshop"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["interior-design", "home", "ai-art"],
+    "exampleTasks": [
+      "Collect room images from clients",
+      "Generate AI-styled versions (modern, boho, minimalist)",
+      "Deliver design mockups with furniture links"
+    ],
+    "examplePrompts": [
+      "Generate a Midjourney prompt to redesign this living room in modern Scandinavian style.",
+      "Create 3 moodboard ideas for a small apartment bedroom."
+    ]
+  },
+  {
+    "title": "Product Demo Script Packs",
+    "summary": "Sell AI-generated product demo scripts and shotlists for DTC brands and agencies.",
+    "category": "Digital Products",
+    "skillsNeeded": ["copywriting", "product-marketing", "video"],
+    "assetsHelpful": ["chatgpt", "gumroad"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 1,
+    "demandTags": ["product-demos", "ecommerce", "ugc"],
+    "exampleTasks": [
+      "Generate demo scripts for trending product niches",
+      "Package as PDF or Notion templates",
+      "Sell to agencies and TikTok creators"
+    ],
+    "examplePrompts": [
+      "Write a 45-second product demo script for a new skincare gadget.",
+      "List 10 shot ideas for a viral TikTok ad."
+    ]
+  },
+  {
+    "title": "AI-Powered Podcast Topic Generator",
+    "summary": "Offer creators a service or tool that generates endless episode ideas and outlines based on their niche and audience.",
+    "category": "SaaS",
+    "skillsNeeded": ["writing", "frontend", "podcasting"],
+    "assetsHelpful": ["openai-api", "vercel"],
+    "difficulty": 3,
+    "timeToCash": 2,
+    "startupCost": 2,
+    "demandTags": ["podcasts", "content-creation", "idea-generation"],
+    "exampleTasks": [
+      "Collect info on creator niche and vibe",
+      "Generate 20+ topic ideas and structured outlines",
+      "Allow easy export or integration with Notion"
+    ],
+    "examplePrompts": [
+      "Generate 20 podcast episode ideas for a spiritual entrepreneurship podcast.",
+      "Write an outline for an episode about AI trends in small business."
+    ]
+  },
+  {
+    "title": "Automated TikTok Comment Reply Bot",
+    "summary": "Build a GPT-powered bot that replies to TikTok comments in brand voice to boost engagement.",
+    "category": "SaaS",
+    "skillsNeeded": ["api-integration", "prompt-engineering", "social-media"],
+    "assetsHelpful": ["tiktok-api", "openai-api"],
+    "difficulty": 4,
+    "timeToCash": 3,
+    "startupCost": 3,
+    "demandTags": ["tiktok", "engagement", "automation"],
+    "exampleTasks": [
+      "Connect TikTok API to fetch comments",
+      "Generate witty or helpful replies in real-time",
+      "Offer SaaS subscriptions for brands"
+    ],
+    "examplePrompts": [
+      "Reply to this comment in a witty Gen Z tone: 'Is this real??'",
+      "Write 5 comment reply variations for a DTC brand post."
+    ]
+  }
+]
