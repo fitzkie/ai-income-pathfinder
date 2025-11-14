@@ -86,6 +86,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin Routes
+
+  // Create a new opportunity
+  app.post("/api/opportunities", async (req, res) => {
+    try {
+      const opportunity = req.body;
+      
+      // Validate required fields
+      if (!opportunity.title || !opportunity.slug) {
+        return res.status(400).json({ error: "Title and slug are required" });
+      }
+
+      const newOpportunity = await storage.createOpportunity(opportunity);
+      res.json(newOpportunity);
+    } catch (error) {
+      console.error("Failed to create opportunity:", error);
+      res.status(500).json({ error: "Failed to create opportunity" });
+    }
+  });
+
+  // Update an opportunity
+  app.put("/api/opportunities/:id", async (req, res) => {
+    try {
+      const opportunity = req.body;
+      const updatedOpportunity = await storage.updateOpportunity(req.params.id, opportunity);
+      
+      if (!updatedOpportunity) {
+        return res.status(404).json({ error: "Opportunity not found" });
+      }
+      
+      res.json(updatedOpportunity);
+    } catch (error) {
+      console.error("Failed to update opportunity:", error);
+      res.status(500).json({ error: "Failed to update opportunity" });
+    }
+  });
+
+  // Delete an opportunity
+  app.delete("/api/opportunities/:id", async (req, res) => {
+    try {
+      const success = await storage.deleteOpportunity(req.params.id);
+      
+      if (!success) {
+        return res.status(404).json({ error: "Opportunity not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Failed to delete opportunity:", error);
+      res.status(500).json({ error: "Failed to delete opportunity" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

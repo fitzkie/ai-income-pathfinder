@@ -6,22 +6,56 @@ import { eq } from "drizzle-orm";
 import { randomUUID } from "crypto";
 import { opportunities } from "./opportunities";
 
-export class DatabaseStorage implements IStorage {
-  private opportunitiesMap: Map<string, Opportunity>;
+// In-memory cache for opportunities (seeded data)
+let opportunitiesCache: Map<string, Opportunity> | null = null;
 
-  constructor() {
-    // Opportunities are still in-memory (they're seeded data)
-    this.opportunitiesMap = new Map(
+function initializeOpportunitiesCache() {
+  if (!opportunitiesCache) {
+    opportunitiesCache = new Map(
       opportunities.map(opp => [opp.id, opp])
     );
   }
+  return opportunitiesCache;
+}
+
+export class DatabaseStorage implements IStorage {
+  constructor() {
+    initializeOpportunitiesCache();
+  }
 
   async getAllOpportunities(): Promise<Opportunity[]> {
-    return Array.from(this.opportunitiesMap.values());
+    const cache = initializeOpportunitiesCache();
+    return Array.from(cache.values());
   }
 
   async getOpportunityById(id: string): Promise<Opportunity | undefined> {
-    return this.opportunitiesMap.get(id);
+    const cache = initializeOpportunitiesCache();
+    return cache.get(id);
+  }
+
+  async createOpportunity(opportunity: Opportunity): Promise<Opportunity> {
+    const cache = initializeOpportunitiesCache();
+    const id = opportunity.id || randomUUID();
+    const newOpp = { ...opportunity, id };
+    cache.set(id, newOpp);
+    // In a full implementation, you could persist this to a database table
+    return newOpp;
+  }
+
+  async updateOpportunity(id: string, opportunity: Opportunity): Promise<Opportunity | undefined> {
+    const cache = initializeOpportunitiesCache();
+    if (!cache.has(id)) {
+      return undefined;
+    }
+    const updated = { ...opportunity, id };
+    cache.set(id, updated);
+    // In a full implementation, you could persist this to a database table
+    return updated;
+  }
+
+  async deleteOpportunity(id: string): Promise<boolean> {
+    const cache = initializeOpportunitiesCache();
+    return cache.delete(id);
   }
 
   async saveProfile(profile: Profile): Promise<Profile> {

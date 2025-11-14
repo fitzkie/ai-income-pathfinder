@@ -6,6 +6,9 @@ export interface IStorage {
   // Opportunities
   getAllOpportunities(): Promise<Opportunity[]>;
   getOpportunityById(id: string): Promise<Opportunity | undefined>;
+  createOpportunity(opportunity: Opportunity): Promise<Opportunity>;
+  updateOpportunity(id: string, opportunity: Opportunity): Promise<Opportunity | undefined>;
+  deleteOpportunity(id: string): Promise<boolean>;
   
   // Profiles (in-memory only for now)
   saveProfile(profile: Profile): Promise<Profile>;
@@ -35,6 +38,26 @@ export class MemStorage implements IStorage {
 
   async getOpportunityById(id: string): Promise<Opportunity | undefined> {
     return this.opportunities.get(id);
+  }
+
+  async createOpportunity(opportunity: Opportunity): Promise<Opportunity> {
+    const id = opportunity.id || randomUUID();
+    const newOpportunity = { ...opportunity, id };
+    this.opportunities.set(id, newOpportunity);
+    return newOpportunity;
+  }
+
+  async updateOpportunity(id: string, opportunity: Opportunity): Promise<Opportunity | undefined> {
+    if (!this.opportunities.has(id)) {
+      return undefined;
+    }
+    const updated = { ...opportunity, id };
+    this.opportunities.set(id, updated);
+    return updated;
+  }
+
+  async deleteOpportunity(id: string): Promise<boolean> {
+    return this.opportunities.delete(id);
   }
 
   async saveProfile(profile: Profile): Promise<Profile> {
