@@ -7,9 +7,7 @@ WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
-# Use legacy-peer-deps during CI install to avoid ERESOLVE failures
-# (temporary workaround; prefer fixing package versions long-term)
-RUN npm ci --legacy-peer-deps
+RUN npm ci
 
 # Build the application
 FROM base AS builder
