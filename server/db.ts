@@ -1,5 +1,5 @@
-import { drizzle } from "drizzle-orm/neon-http";
-import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import * as schema from "@shared/db-schema";
 
 // Get database URL from environment
@@ -9,6 +9,6 @@ if (!databaseUrl) {
   throw new Error("DATABASE_URL environment variable is not set");
 }
 
-// Create connection
-const sql = neon(databaseUrl);
-export const db = drizzle(sql, { schema });
+// Create connection using postgres-js driver (works with standard PostgreSQL)
+const client = postgres(databaseUrl);
+export const db = drizzle(client, { schema });
