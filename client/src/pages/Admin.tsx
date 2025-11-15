@@ -30,6 +30,7 @@ interface OpportunityFormData {
   demandTags: string[];
   exampleTasks: string[];
   examplePrompts: string[];
+  scoringFactors: string[];
 }
 
 export default function Admin() {
@@ -45,6 +46,7 @@ export default function Admin() {
     demandTags: [],
     exampleTasks: [],
     examplePrompts: [],
+    scoringFactors: [],
   });
   const [editingId, setEditingId] = useState<string | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -53,6 +55,7 @@ export default function Admin() {
   const [tagInput, setTagInput] = useState("");
   const [taskInput, setTaskInput] = useState("");
   const [promptInput, setPromptInput] = useState("");
+  const [factorInput, setFactorInput] = useState("");
 
   useEffect(() => {
     fetchOpportunities();
@@ -120,6 +123,16 @@ export default function Admin() {
     }
   };
 
+  const handleAddFactor = () => {
+    if (factorInput.trim()) {
+      setFormData({
+        ...formData,
+        scoringFactors: [...(formData.scoringFactors || []), factorInput],
+      });
+      setFactorInput("");
+    }
+  };
+
   const handleRemoveItem = (
     array: string[] | undefined,
     index: number,
@@ -182,6 +195,7 @@ export default function Admin() {
       demandTags: [],
       exampleTasks: [],
       examplePrompts: [],
+      scoringFactors: [],
     });
     setEditingId(null);
   };
@@ -497,6 +511,45 @@ export default function Admin() {
                             type="button"
                             onClick={() =>
                               handleRemoveItem(formData.examplePrompts, idx, "examplePrompts")
+                            }
+                            className="text-destructive hover:text-destructive/80"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Scoring Factors */}
+                  <div className="space-y-2">
+                    <Label htmlFor="factor">Scoring Factors</Label>
+                    <p className="text-xs text-muted-foreground">
+                      Explain what makes this opportunity rank well (difficulty, demand, costs, etc.).
+                    </p>
+                    <div className="flex gap-2">
+                      <Input
+                        id="factor"
+                        value={factorInput}
+                        onChange={(e) => setFactorInput(e.target.value)}
+                        placeholder="e.g., Low startup cost keeps downside minimal"
+                        onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), handleAddFactor())}
+                      />
+                      <Button type="button" onClick={handleAddFactor} variant="outline">
+                        Add
+                      </Button>
+                    </div>
+                    <div className="space-y-2 mt-2">
+                      {formData.scoringFactors?.map((factor, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between bg-gray-50 p-3 rounded-md"
+                        >
+                          <span className="text-sm">{factor}</span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              handleRemoveItem(formData.scoringFactors, idx, "scoringFactors")
                             }
                             className="text-destructive hover:text-destructive/80"
                           >

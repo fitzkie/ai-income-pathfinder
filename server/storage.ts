@@ -26,7 +26,7 @@ export class MemStorage implements IStorage {
   constructor() {
     // Seed opportunities
     this.opportunities = new Map(
-      opportunities.map(opp => [opp.id, opp])
+      opportunities.map(opp => [opp.id, normalizeOpportunity(opp)])
     );
     this.profiles = new Map();
     this.recommendations = new Map();
@@ -42,7 +42,7 @@ export class MemStorage implements IStorage {
 
   async createOpportunity(opportunity: Opportunity): Promise<Opportunity> {
     const id = opportunity.id || randomUUID();
-    const newOpportunity = { ...opportunity, id };
+    const newOpportunity = normalizeOpportunity({ ...opportunity, id });
     this.opportunities.set(id, newOpportunity);
     return newOpportunity;
   }
@@ -51,7 +51,7 @@ export class MemStorage implements IStorage {
     if (!this.opportunities.has(id)) {
       return undefined;
     }
-    const updated = { ...opportunity, id };
+    const updated = normalizeOpportunity({ ...opportunity, id });
     this.opportunities.set(id, updated);
     return updated;
   }
@@ -93,4 +93,16 @@ if (process.env.DATABASE_URL) {
   });
 } else {
   console.log("ℹ️  Using in-memory storage (no DATABASE_URL found)");
+}
+
+function normalizeOpportunity(opportunity: Opportunity): Opportunity {
+  return {
+    ...opportunity,
+    skillsNeeded: opportunity.skillsNeeded ?? [],
+    assetsHelpful: opportunity.assetsHelpful ?? [],
+    demandTags: opportunity.demandTags ?? [],
+    exampleTasks: opportunity.exampleTasks ?? [],
+    examplePrompts: opportunity.examplePrompts ?? [],
+    scoringFactors: opportunity.scoringFactors ?? [],
+  };
 }

@@ -8,6 +8,13 @@
       "when": 1731699600000,
       "tag": "0000_init",
       "breakpoints": false
+    },
+    {
+      "idx": 1,
+      "version": "0001_add_opportunities",
+      "when": 1731703200000,
+      "tag": "0001_add_opportunities",
+      "breakpoints": false
     }
   ]
 }

@@ -42,6 +42,26 @@ export const recommendations = pgTable("recommendations", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Opportunities Table
+export const opportunitiesTable = pgTable("opportunities", {
+  id: text("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  summary: text("summary").notNull(),
+  category: text("category").notNull(),
+  skillsNeeded: jsonb("skills_needed").$type<string[]>().notNull(),
+  assetsHelpful: jsonb("assets_helpful").$type<string[]>().notNull(),
+  difficulty: integer("difficulty").notNull(),
+  timeToCash: integer("time_to_cash").notNull(),
+  startupCost: integer("startup_cost").notNull(),
+  typicalARPU: integer("typical_arpu"),
+  demandTags: jsonb("demand_tags").$type<string[]>().notNull(),
+  exampleTasks: jsonb("example_tasks").$type<string[]>().notNull(),
+  examplePrompts: jsonb("example_prompts").$type<string[]>().notNull(),
+  scoringFactors: jsonb("scoring_factors").$type<string[]>().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Insert schemas
 export const insertProfileSchema = createInsertSchema(profiles);
 export const insertRecommendationSchema = createInsertSchema(recommendations);
@@ -51,3 +71,5 @@ export type SelectProfile = typeof profiles.$inferSelect;
 export type SelectRecommendation = typeof recommendations.$inferSelect;
 export type InsertProfile = typeof profiles.$inferInsert;
 export type InsertRecommendation = typeof recommendations.$inferInsert;
+export type SelectOpportunity = typeof opportunitiesTable.$inferSelect;
+export type InsertOpportunity = typeof opportunitiesTable.$inferInsert;

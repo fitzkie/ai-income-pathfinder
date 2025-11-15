@@ -17,6 +17,7 @@
   ```
 - [ ] Run: `npm install --legacy-peer-deps`
 - [ ] Run: `npm run db:push` (create database tables)
+- [ ] Run: `node scripts/seed-opportunities.mjs` (import the 203 side hustles into Postgres)
 - [ ] Run: `npm run dev`
 - [ ] Open http://localhost:3000/admin (test admin dashboard)
 
@@ -35,13 +36,14 @@
 - [ ] Wait for green checkmark
 - [ ] Click domain link to visit live app
 - [ ] Test at `/admin` route
+- [ ] Run: `node scripts/seed-opportunities.mjs` with your Railway `DATABASE_URL` (or via Railway Shell) to seed production data
 
 ## ✅ Verify Everything Works
 
 - [ ] Local dev server starts without errors
 - [ ] Database URL is detected (look for log: "Using PostgreSQL database storage" OR "Using in-memory storage")
 - [ ] When DATABASE_URL is set you see "Running database migrations..." followed by "Database migrations completed successfully"
-- [ ] Can view all 20 opportunities in admin dashboard
+- [ ] Can view all 203 opportunities in admin dashboard
 - [ ] Can create new opportunity
 - [ ] Can edit existing opportunity
 - [ ] Can delete opportunity

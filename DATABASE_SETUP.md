@@ -45,7 +45,15 @@ This will:
 
 > **Heads up:** The Drizzle configuration now reads table definitions from `shared/db-schema.ts` and writes SQL files to the `drizzle/` directory. Keep that folder checked into Git so Railway can apply the same migrations when it boots.
 
-### Step 5: Start Development
+### Step 5: Seed the Opportunities Catalog
+
+Import your private CSV into the database (upserts by slug, so rerunning is safe):
+
+```bash
+node scripts/seed-opportunities.mjs
+```
+
+### Step 6: Start Development
 
 ```bash
 npm run dev
@@ -86,7 +94,15 @@ If not automatic:
 2. Click **Variables**
 3. Make sure `DATABASE_URL` is set (Railway does this by default for PostgreSQL)
 
-### Step 4: Verify Deployment
+### Step 4: Seed Production Data
+
+Run the seed script against the Railway database so the live app has the full opportunity catalog (you can run this locally by configuring `DATABASE_URL` with Railway’s external connection string):
+
+```bash
+node scripts/seed-opportunities.mjs
+```
+
+### Step 5: Verify Deployment
 
 - Go to your Railway project's **Deployments** tab
 - Wait for the build to complete (green checkmark)

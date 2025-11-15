@@ -50,6 +50,7 @@ export interface Opportunity {
   demandTags: string[];
   exampleTasks: string[];
   examplePrompts: string[];
+  scoringFactors: string[];
 }
 
 // Demand Signal Schema

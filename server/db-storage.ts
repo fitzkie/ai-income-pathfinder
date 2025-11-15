@@ -1,61 +1,45 @@
 import { Profile, Recommendation, Opportunity } from "@shared/schema";
 import { IStorage } from "./storage";
 import { db } from "./db";
-import { profiles, recommendations } from "@shared/db-schema";
-import { eq } from "drizzle-orm";
+import { profiles, recommendations, opportunitiesTable, SelectOpportunity } from "@shared/db-schema";
+import { asc, eq } from "drizzle-orm";
 import { randomUUID } from "crypto";
-import { opportunities } from "./opportunities";
-
-// In-memory cache for opportunities (seeded data)
-let opportunitiesCache: Map<string, Opportunity> | null = null;
-
-function initializeOpportunitiesCache() {
-  if (!opportunitiesCache) {
-    opportunitiesCache = new Map(
-      opportunities.map(opp => [opp.id, opp])
-    );
-  }
-  return opportunitiesCache;
-}
 
 export class DatabaseStorage implements IStorage {
-  constructor() {
-    initializeOpportunitiesCache();
-  }
-
   async getAllOpportunities(): Promise<Opportunity[]> {
-    const cache = initializeOpportunitiesCache();
-    return Array.from(cache.values());
+    const rows = await db.select().from(opportunitiesTable).orderBy(asc(opportunitiesTable.title));
+    return rows.map(mapRowToOpportunity);
   }
 
   async getOpportunityById(id: string): Promise<Opportunity | undefined> {
-    const cache = initializeOpportunitiesCache();
-    return cache.get(id);
+    const [row] = await db.select().from(opportunitiesTable).where(eq(opportunitiesTable.id, id)).limit(1);
+    return row ? mapRowToOpportunity(row) : undefined;
   }
 
   async createOpportunity(opportunity: Opportunity): Promise<Opportunity> {
-    const cache = initializeOpportunitiesCache();
-    const id = opportunity.id || randomUUID();
-    const newOpp = { ...opportunity, id };
-    cache.set(id, newOpp);
-    // In a full implementation, you could persist this to a database table
-    return newOpp;
+    const normalized = normalizeOpportunity({ ...opportunity, id: opportunity.id || randomUUID() });
+    const [inserted] = await db
+      .insert(opportunitiesTable)
+      .values(mapOpportunityToRow(normalized))
+      .returning();
+
+    return mapRowToOpportunity(inserted);
   }
 
   async updateOpportunity(id: string, opportunity: Opportunity): Promise<Opportunity | undefined> {
-    const cache = initializeOpportunitiesCache();
-    if (!cache.has(id)) {
-      return undefined;
-    }
-    const updated = { ...opportunity, id };
-    cache.set(id, updated);
-    // In a full implementation, you could persist this to a database table
-    return updated;
+    const normalized = normalizeOpportunity({ ...opportunity, id });
+    const [updated] = await db
+      .update(opportunitiesTable)
+      .set(mapOpportunityToRow(normalized))
+      .where(eq(opportunitiesTable.id, id))
+      .returning();
+
+    return updated ? mapRowToOpportunity(updated) : undefined;
   }
 
   async deleteOpportunity(id: string): Promise<boolean> {
-    const cache = initializeOpportunitiesCache();
-    return cache.delete(id);
+    const deleted = await db.delete(opportunitiesTable).where(eq(opportunitiesTable.id, id)).returning({ id: opportunitiesTable.id });
+    return deleted.length > 0;
   }
 
   async saveProfile(profile: Profile): Promise<Profile> {
@@ -113,4 +97,66 @@ export class DatabaseStorage implements IStorage {
       createdAt: rec.createdAt.toISOString(),
     };
   }
+}
+
+function mapRowToOpportunity(row: SelectOpportunity): Opportunity {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    summary: row.summary,
+    category: row.category as Opportunity["category"],
+    skillsNeeded: row.skillsNeeded ?? [],
+    assetsHelpful: row.assetsHelpful ?? [],
+    difficulty: row.difficulty,
+    timeToCash: row.timeToCash,
+    startupCost: row.startupCost,
+    typicalARPU: row.typicalARPU ?? undefined,
+    demandTags: row.demandTags ?? [],
+    exampleTasks: row.exampleTasks ?? [],
+    examplePrompts: row.examplePrompts ?? [],
+    scoringFactors: row.scoringFactors ?? [],
+  };
+}
+
+function mapOpportunityToRow(opportunity: Opportunity) {
+  return {
+    id: opportunity.id,
+    slug: opportunity.slug,
+    title: opportunity.title,
+    summary: opportunity.summary,
+    category: opportunity.category,
+    skillsNeeded: opportunity.skillsNeeded ?? [],
+    assetsHelpful: opportunity.assetsHelpful ?? [],
+    difficulty: opportunity.difficulty,
+    timeToCash: opportunity.timeToCash,
+    startupCost: opportunity.startupCost,
+    typicalARPU: opportunity.typicalARPU ?? null,
+    demandTags: opportunity.demandTags ?? [],
+    exampleTasks: opportunity.exampleTasks ?? [],
+    examplePrompts: opportunity.examplePrompts ?? [],
+    scoringFactors: opportunity.scoringFactors ?? [],
+  };
+}
+
+function normalizeOpportunity(opportunity: Opportunity): Opportunity {
+  const slug = opportunity.slug?.trim() || slugify(opportunity.title);
+
+  return {
+    ...opportunity,
+    slug,
+    skillsNeeded: opportunity.skillsNeeded ?? [],
+    assetsHelpful: opportunity.assetsHelpful ?? [],
+    demandTags: opportunity.demandTags ?? [],
+    exampleTasks: opportunity.exampleTasks ?? [],
+    examplePrompts: opportunity.examplePrompts ?? [],
+    scoringFactors: opportunity.scoringFactors ?? [],
+  };
+}
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }

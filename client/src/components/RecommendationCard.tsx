@@ -80,6 +80,20 @@ export function RecommendationCard({ item, rank }: RecommendationCardProps) {
           </ul>
         </div>
 
+        {item.opportunity.scoringFactors?.length > 0 && (
+          <div>
+            <h4 className="text-sm font-semibold mb-3">What boosts this play</h4>
+            <ul className="space-y-2">
+              {item.opportunity.scoringFactors.map((factor, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="text-primary mt-0.5">•</span>
+                  <span>{factor}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Action Plan */}
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="action-plan">
