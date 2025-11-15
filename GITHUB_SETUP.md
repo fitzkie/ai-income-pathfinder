@@ -118,16 +118,16 @@ If Replit's integration doesn't work:
 
 ## FAQ
 
-**Q: Can I use SiteGround?**
-A: Not recommended. SiteGround is for PHP/WordPress sites. This app needs Node.js runtime. Use Railway, Render, or a VPS instead.
+**Q: Can I use SiteGround?**  
+A: Not recommended. SiteGround is for PHP/WordPress sites. This app needs a Node.js runtime plus PostgreSQL. Use Railway, Render, or a VPS instead.
 
-**Q: Will my data persist?**
-A: Currently using in-memory storage (resets on restart). Add PostgreSQL database for persistence (covered in DEPLOYMENT.md).
+**Q: Will my data persist?**  
+A: Yes—as long as `DATABASE_URL` points to PostgreSQL. Persistence is required now (see `DATABASE_SETUP.md` for the seed script).
 
-**Q: How much does it cost?**
+**Q: How much does it cost?**  
 - **Railway**: $5/month free credit (enough for this app)
 - **Render**: Free tier available (sleeps after inactivity)
-- **Both have paid plans starting ~$7-20/month for production**
+- Paid plans start around $7-20/month for production workloads.
 
-**Q: What about the database?**
-A: Add it later! The app works fine with in-memory storage for now. When ready, add PostgreSQL through Railway/Render dashboard (takes 2 minutes).
+**Q: What about the database?**  
+A: PostgreSQL is mandatory. Provision it up front (Railway does this automatically) and run `npm run db:push && npm run seed:opportunities` to populate data.

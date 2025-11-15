@@ -1,6 +1,5 @@
 import { Profile, Recommendation, Opportunity } from "@shared/schema";
-import { randomUUID } from "crypto";
-import { opportunities } from "./opportunities";
+import { DatabaseStorage } from "./db-storage";
 
 export interface IStorage {
   // Opportunities
@@ -10,7 +9,7 @@ export interface IStorage {
   updateOpportunity(id: string, opportunity: Opportunity): Promise<Opportunity | undefined>;
   deleteOpportunity(id: string): Promise<boolean>;
   
-  // Profiles (in-memory only for now)
+  // Profiles
   saveProfile(profile: Profile): Promise<Profile>;
   
   // Recommendations
@@ -18,91 +17,4 @@ export interface IStorage {
   getRecommendation(id: string): Promise<Recommendation | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private opportunities: Map<string, Opportunity>;
-  private profiles: Map<string, Profile>;
-  private recommendations: Map<string, Recommendation>;
-
-  constructor() {
-    // Seed opportunities
-    this.opportunities = new Map(
-      opportunities.map(opp => [opp.id, normalizeOpportunity(opp)])
-    );
-    this.profiles = new Map();
-    this.recommendations = new Map();
-  }
-
-  async getAllOpportunities(): Promise<Opportunity[]> {
-    return Array.from(this.opportunities.values());
-  }
-
-  async getOpportunityById(id: string): Promise<Opportunity | undefined> {
-    return this.opportunities.get(id);
-  }
-
-  async createOpportunity(opportunity: Opportunity): Promise<Opportunity> {
-    const id = opportunity.id || randomUUID();
-    const newOpportunity = normalizeOpportunity({ ...opportunity, id });
-    this.opportunities.set(id, newOpportunity);
-    return newOpportunity;
-  }
-
-  async updateOpportunity(id: string, opportunity: Opportunity): Promise<Opportunity | undefined> {
-    if (!this.opportunities.has(id)) {
-      return undefined;
-    }
-    const updated = normalizeOpportunity({ ...opportunity, id });
-    this.opportunities.set(id, updated);
-    return updated;
-  }
-
-  async deleteOpportunity(id: string): Promise<boolean> {
-    return this.opportunities.delete(id);
-  }
-
-  async saveProfile(profile: Profile): Promise<Profile> {
-    const id = profile.id || randomUUID();
-    const savedProfile = { ...profile, id, createdAt: new Date().toISOString() };
-    this.profiles.set(id, savedProfile);
-    return savedProfile;
-  }
-
-  async saveRecommendation(recommendation: Recommendation): Promise<Recommendation> {
-    const id = recommendation.id || randomUUID();
-    const saved = { ...recommendation, id, createdAt: new Date().toISOString() };
-    this.recommendations.set(id, saved);
-    return saved;
-  }
-
-  async getRecommendation(id: string): Promise<Recommendation | undefined> {
-    return this.recommendations.get(id);
-  }
-}
-
-// Export storage - uses in-memory by default, will be replaced if DATABASE_URL is set
-export let storage: IStorage = new MemStorage();
-
-// Initialize database storage if DATABASE_URL exists
-if (process.env.DATABASE_URL) {
-  import("./db-storage").then(({ DatabaseStorage }) => {
-    storage = new DatabaseStorage();
-    console.log("✅ Using PostgreSQL database storage");
-  }).catch(error => {
-    console.error("❌ Failed to initialize database storage:", error);
-    console.log("⚠️  Falling back to in-memory storage");
-  });
-} else {
-  console.log("ℹ️  Using in-memory storage (no DATABASE_URL found)");
-}
-
-function normalizeOpportunity(opportunity: Opportunity): Opportunity {
-  return {
-    ...opportunity,
-    skillsNeeded: opportunity.skillsNeeded ?? [],
-    assetsHelpful: opportunity.assetsHelpful ?? [],
-    demandTags: opportunity.demandTags ?? [],
-    exampleTasks: opportunity.exampleTasks ?? [],
-    examplePrompts: opportunity.examplePrompts ?? [],
-    scoringFactors: opportunity.scoringFactors ?? [],
-  };
-}
+export const storage: IStorage = new DatabaseStorage();

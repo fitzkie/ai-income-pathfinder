@@ -161,12 +161,12 @@ Required environment variables for deployment:
 |----------|-------------|---------|
 | `NODE_ENV` | Environment mode | `production` |
 | `SESSION_SECRET` | Secret for sessions | Random 32+ char string |
+| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@host:port/db` |
 | `PORT` | Server port | `5000` (Railway/Render set this automatically) |
 
-### Optional (for future features):
+### Optional (future features):
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string |
 | `YOUTUBE_API_KEY` | YouTube Data API v3 key |
 
 ### Generate SESSION_SECRET:
@@ -176,23 +176,16 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ---
 
-## Database Setup (Optional)
+## Database Setup
 
-Currently, the app uses **in-memory storage** (data resets on restart).
+PostgreSQL is required. Railway automatically provisions it when you add the database plugin; Render users should create a managed Postgres instance manually. After setting `DATABASE_URL`, run:
 
-To add persistent storage:
+```bash
+npm run db:push
+npm run seed:opportunities
+```
 
-1. **Railway**: Add PostgreSQL database
-   - In Railway dashboard, click "New" > "Database" > "PostgreSQL"
-   - Railway will auto-set `DATABASE_URL` environment variable
-
-2. **Render**: Add PostgreSQL database
-   - Create new "PostgreSQL" instance
-   - Copy connection string to `DATABASE_URL` variable
-
-3. **Update code** (future task):
-   - Migrate from `MemStorage` to PostgreSQL using Drizzle ORM
-   - Run database migrations
+The seed script imports the private CSV of 203 side hustles directly into Postgres. Rerun it any time you update the spreadsheet.
 
 ---
 
@@ -211,10 +204,10 @@ For **AI Income Pathfinder**, I recommend:
 
 1. Push your code to GitHub
 2. Connect Railway or Render to your GitHub repo
-3. Add environment variables
-4. Deploy!
-5. (Optional) Add custom domain
-6. (Optional) Add PostgreSQL database for persistence
+3. Add `DATABASE_URL` + `SESSION_SECRET`
+4. Deploy
+5. Seed opportunities (`npm run seed:opportunities`)
+6. (Optional) Add a custom domain
 
 Need help? Check the platform-specific docs:
 - [Railway Docs](https://docs.railway.app)

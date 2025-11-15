@@ -9,7 +9,7 @@ AI Income Pathfinder is a sophisticated web application that interviews users ab
 - **Backend**: Express + TypeScript
 - **Data Visualization**: Recharts (radar charts)
 - **Routing**: Wouter
-- **Storage**: In-memory (MemStorage) with 22+ seeded opportunities
+- **Storage**: PostgreSQL via Drizzle ORM (203 seeded opportunities)
 
 ## Project Architecture
 
@@ -47,8 +47,8 @@ client/src/
 ```
 server/
 ├── routes.ts           # API endpoints
-├── storage.ts          # In-memory storage interface
-├── opportunities.ts    # 22 seeded opportunities
+├── storage.ts          # Shared storage interface / exports DB implementation
+├── db-storage.ts       # PostgreSQL-backed implementation (Drizzle)
 ├── scoring.ts          # Weighted scoring algorithm
 ├── demandSignals.ts    # Mock demand signal generator
 └── actionPlans.ts      # 7-day action plan generator
@@ -91,7 +91,7 @@ server/
 ## API Endpoints
 
 ### GET /api/opportunities
-Returns all seeded opportunities (22 total)
+Returns the full catalog of seeded opportunities (203 total, stored in Postgres)
 
 ### POST /api/recommendations
 **Request Body**: User profile (Profile type)
@@ -115,8 +115,8 @@ Total fit score: 0-100
 
 ## Data Persistence
 - **Frontend**: Zustand store persists profile to localStorage
-- **Backend**: In-memory storage (no database required for MVP)
-- User can return and see saved profile
+- **Backend**: PostgreSQL (Railway) accessed via Drizzle ORM
+- Seed data is imported from `attached_assets/203 Side Hustles.csv` using `npm run seed:opportunities`
 
 ## Design System
 Following design_guidelines.md:

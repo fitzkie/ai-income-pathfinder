@@ -41,8 +41,8 @@
 ## ✅ Verify Everything Works
 
 - [ ] Local dev server starts without errors
-- [ ] Database URL is detected (look for log: "Using PostgreSQL database storage" OR "Using in-memory storage")
-- [ ] When DATABASE_URL is set you see "Running database migrations..." followed by "Database migrations completed successfully"
+- [ ] Console shows `✅ Using PostgreSQL database storage`
+- [ ] Migrations log `Running database migrations...` → `Database migrations completed successfully`
 - [ ] Can view all 203 opportunities in admin dashboard
 - [ ] Can create new opportunity
 - [ ] Can edit existing opportunity
@@ -53,12 +53,12 @@
 
 ## 📝 Database Connection String Format
 
-Your CONNECTION_STRING should look like:
+Your local `.env` should use the **external** connection string (so your laptop can reach it), e.g.:
 ```
-postgresql://user:password@host.railway.internal:5432/railway
+DATABASE_URL=postgresql://user:password@nozomi.proxy.rlwy.net:37154/railway
 ```
 
-NOT the old Postgres URL format. Railway gives you the correct one in the "Connection String" tab.
+Railway also provides an internal URL (`postgresql://...railway.internal`) for services running inside Railway—use that one only inside the deployment environment.
 
 ## 🆘 If Something Goes Wrong
 

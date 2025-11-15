@@ -626,7 +626,11 @@ export default function Admin() {
                             <span className="font-semibold">Demand Tags: </span>
                             <div className="flex flex-wrap gap-1 mt-1">
                               {opp.demandTags.map((tag, idx) => (
-                                <Badge key={idx} variant="outline" className="text-xs bg-blue-50">
+                                <Badge
+                                  key={idx}
+                                  variant="outline"
+                                  className="text-xs bg-blue-600 text-white border-blue-600 shadow"
+                                >
                                   {tag}
                                 </Badge>
                               ))}

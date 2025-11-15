@@ -60,11 +60,11 @@ npm run dev
 ```
 
 The app will now:
-- ✅ Use Railway PostgreSQL for persistent data storage
+- ✅ Use Railway PostgreSQL for persistent data storage (required)
 - ✅ Auto-detect `DATABASE_URL` and initialize database storage
 - ✅ Run on http://localhost:3000
 
-During startup the server automatically runs `drizzle` migrations (it no longer relies on a manual SQL step). When `DATABASE_URL` is missing the migration step is skipped and the app falls back to in-memory storage.
+During startup the server automatically runs `drizzle` migrations. If `DATABASE_URL` is missing the server exits early—Postgres is required for both development and production.
 
 ---
 
@@ -115,11 +115,11 @@ node scripts/seed-opportunities.mjs
 
 ### What Changed?
 
-1. **storage.ts** - Now auto-detects `DATABASE_URL` and uses `DatabaseStorage` instead of `MemStorage`
-2. **db-storage.ts** - Implements CRUD operations for opportunities
+1. **storage.ts** - Always uses the Postgres-backed `DatabaseStorage`
+2. **db-storage.ts** - Implements CRUD operations for opportunities, profiles, and recommendations
 3. **routes.ts** - Added POST/PUT/DELETE endpoints for admin operations
-4. **Admin.tsx** - New admin dashboard at `/admin` route
-5. **.env.example** - Template for environment variables
+4. **Admin.tsx** - Admin dashboard at `/admin` route
+5. **Seed script** - `node scripts/seed-opportunities.mjs` imports the private CSV into Postgres
 
 ### Data Flow
 
@@ -132,21 +132,10 @@ Express Routes (/api/opportunities)
     ↓
     ↓ Drizzle ORM
     ↓
-DatabaseStorage OR MemStorage
+DatabaseStorage
     ↓
     ↓
-Railway PostgreSQL (or in-memory)
-```
-
-### How It Selects Storage
-
-```typescript
-// In storage.ts:
-if (process.env.DATABASE_URL) {
-  // Use DatabaseStorage (PostgreSQL)
-} else {
-  // Use MemStorage (in-memory, data lost on restart)
-}
+Railway PostgreSQL
 ```
 
 ---
@@ -154,7 +143,7 @@ if (process.env.DATABASE_URL) {
 ## Troubleshooting
 
 ### Issue: "DATABASE_URL not found"
-**Solution:** Make sure `.env` file is created with your Railway connection string
+**Solution:** Create `.env` with your Railway connection string. The server won’t start without it.
 
 ### Issue: "Migrations failed"
 **Solution:** 
@@ -165,11 +154,8 @@ npm run db:push
 # Or check migrations manually in Railway dashboard
 ```
 
-### Issue: "Data not persisting after restart"
-**Solution:** Make sure `DATABASE_URL` is set. Without it, the app uses in-memory storage.
-
 ### Issue: "Connection timeout"
-**Solution:** Railway databases can take 30 seconds to connect. Wait a moment and try again.
+**Solution:** Railway databases can take ~30 seconds to accept connections. Wait a moment and try again.
 
 ---
 
@@ -193,10 +179,12 @@ npm run db:push
 - `items` (jsonb)
 - `created_at` (timestamp)
 
-### In-Memory: opportunities
-- Stored in code (`server/opportunities.ts`)
-- Can be edited via admin dashboard
-- Cached in memory for performance
+### opportunities table
+- `id`, `slug`, `title`, `summary`, `category`
+- `skills_needed`, `assets_helpful`
+- `difficulty`, `time_to_cash`, `startup_cost`, `typical_arpu`
+- `demand_tags`, `example_tasks`, `example_prompts`, `scoring_factors`
+- `created_at`
 
 ---
 

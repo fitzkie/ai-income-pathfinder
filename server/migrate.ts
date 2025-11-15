@@ -8,8 +8,7 @@ export async function runMigrations() {
   const databaseUrl = process.env.DATABASE_URL;
   
   if (!databaseUrl) {
-    console.log("⚠️  No DATABASE_URL found, skipping migrations (using in-memory storage)");
-    return;
+    throw new Error("DATABASE_URL is required before running migrations.");
   }
 
   const client = postgres(databaseUrl, { max: 1 });
