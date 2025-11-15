@@ -40,6 +40,7 @@
 
 - [ ] Local dev server starts without errors
 - [ ] Database URL is detected (look for log: "Using PostgreSQL database storage" OR "Using in-memory storage")
+- [ ] When DATABASE_URL is set you see "Running database migrations..." followed by "Database migrations completed successfully"
 - [ ] Can view all 20 opportunities in admin dashboard
 - [ ] Can create new opportunity
 - [ ] Can edit existing opportunity

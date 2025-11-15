@@ -43,6 +43,8 @@ This will:
 - Create the `recommendations` table (for AI recommendations)
 - Run all migrations in the `drizzle/` folder
 
+> **Heads up:** The Drizzle configuration now reads table definitions from `shared/db-schema.ts` and writes SQL files to the `drizzle/` directory. Keep that folder checked into Git so Railway can apply the same migrations when it boots.
+
 ### Step 5: Start Development
 
 ```bash
@@ -53,6 +55,8 @@ The app will now:
 - ✅ Use Railway PostgreSQL for persistent data storage
 - ✅ Auto-detect `DATABASE_URL` and initialize database storage
 - ✅ Run on http://localhost:3000
+
+During startup the server automatically runs `drizzle` migrations (it no longer relies on a manual SQL step). When `DATABASE_URL` is missing the migration step is skipped and the app falls back to in-memory storage.
 
 ---
 
