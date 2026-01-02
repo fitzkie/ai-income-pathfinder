@@ -53,6 +53,72 @@ export interface Opportunity {
   scoringFactors: string[];
 }
 
+export type PlaybookAudience = "general" | "creator" | "b2b";
+
+export type PlaybookQualityStatus = "draft" | "reviewed" | "approved";
+
+export type ToolkitAssetType = "Template" | "Tracker" | "Automation" | "Script" | "Calculator";
+
+export interface PlaybookActionRow {
+  phase: string;
+  what: string;
+  tools: string[];
+  time: string;
+}
+
+export interface MonetizationRow {
+  offer: string;
+  description: string;
+  price: string;
+  frequency: string;
+}
+
+export interface OutreachTemplates {
+  coldEmail: string;
+  linkedInDm: string;
+  upworkBio: string;
+  shortHook: string;
+}
+
+export interface PromptPackItem {
+  title: string;
+  prompt: string;
+  useCase: string;
+}
+
+export interface ToolkitRow {
+  assetType: ToolkitAssetType;
+  tool: string;
+  description: string;
+}
+
+export interface ChecklistItem {
+  label: string;
+}
+
+export interface SummaryRow {
+  field: string;
+  value: string;
+}
+
+export interface Playbook {
+  id: string;
+  sideHustleId: string;
+  version: string;
+  audienceMode: PlaybookAudience;
+  overview: string;
+  actionPlanRows: PlaybookActionRow[];
+  monetizationRows: MonetizationRow[];
+  outreachTemplates: OutreachTemplates;
+  promptPack: PromptPackItem[];
+  toolkitRows: ToolkitRow[];
+  quickWinChecklist: ChecklistItem[];
+  bonusUpgrade: string;
+  summaryRows: SummaryRow[];
+  qualityStatus: PlaybookQualityStatus;
+  createdAt: string;
+}
+
 // Demand Signal Schema
 export interface DemandSignal {
   source: "google_trends" | "product_hunt" | "upwork" | "youtube";

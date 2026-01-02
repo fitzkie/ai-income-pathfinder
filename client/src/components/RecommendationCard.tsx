@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Copy, Check } from "lucide-react";
+import { Link } from "wouter";
+import { Copy, Check } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,8 @@ import { RecommendationItem } from "@shared/schema";
 import { FitScoreBadge } from "./FitScoreBadge";
 import { ScoreRadar } from "./ScoreRadar";
 import { DemandBadge } from "./DemandBadge";
+import { useSavedPlaybooks } from "@/hooks/useSavedPlaybooks";
+import { useToast } from "@/hooks/use-toast";
 
 interface RecommendationCardProps {
   item: RecommendationItem;
@@ -21,11 +24,21 @@ interface RecommendationCardProps {
 
 export function RecommendationCard({ item, rank }: RecommendationCardProps) {
   const [copiedPrompt, setCopiedPrompt] = useState<number | null>(null);
+  const { toggleSaved, isSaved } = useSavedPlaybooks();
+  const { toast } = useToast();
 
   const copyPrompt = (text: string, index: number) => {
     navigator.clipboard.writeText(text);
     setCopiedPrompt(index);
     setTimeout(() => setCopiedPrompt(null), 2000);
+  };
+
+  const handleSave = () => {
+    toggleSaved(item.opportunity.slug);
+    toast({
+      title: isSaved(item.opportunity.slug) ? "Removed from library" : "Saved to your library",
+      description: item.opportunity.title,
+    });
   };
 
   return (
@@ -151,6 +164,18 @@ export function RecommendationCard({ item, rank }: RecommendationCardProps) {
             </div>
           </div>
         )}
+
+        <div className="flex flex-wrap gap-3">
+          <Button asChild variant="outline">
+            <Link href={`/hustles/${item.opportunity.slug}`}>View Free Preview</Link>
+          </Button>
+          <Button asChild className="bg-[#ebb437] text-black hover:bg-[#d6a931]">
+            <Link href={`/pro/${item.opportunity.slug}`}>Unlock Pro Playbook</Link>
+          </Button>
+          <Button variant="secondary" onClick={handleSave}>
+            {isSaved(item.opportunity.slug) ? "Saved" : "Save"}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
