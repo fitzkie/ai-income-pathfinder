@@ -1,7 +1,14 @@
-import { Profile, Recommendation, Opportunity } from "@shared/schema";
+import { Profile, Recommendation, Opportunity, Playbook, PlaybookAudience } from "@shared/schema";
 import { IStorage } from "./storage";
 import { db } from "./db";
-import { profiles, recommendations, opportunitiesTable, SelectOpportunity } from "@shared/db-schema";
+import {
+  profiles,
+  recommendations,
+  opportunitiesTable,
+  playbooks,
+  SelectOpportunity,
+  SelectPlaybook,
+} from "@shared/db-schema";
 import { asc, eq } from "drizzle-orm";
 import { randomUUID } from "crypto";
 
@@ -97,6 +104,22 @@ export class DatabaseStorage implements IStorage {
       createdAt: rec.createdAt.toISOString(),
     };
   }
+
+  async getPlaybookBySideHustleId(
+    sideHustleId: string,
+    audienceMode: PlaybookAudience
+  ): Promise<Playbook | undefined> {
+    const result = await db
+      .select()
+      .from(playbooks)
+      .where(eq(playbooks.sideHustleId, sideHustleId))
+      .limit(1);
+
+    if (result.length === 0) return undefined;
+
+    const playbook = result.find((row) => row.audienceMode === audienceMode) ?? result[0];
+    return mapRowToPlaybook(playbook);
+  }
 }
 
 function mapRowToOpportunity(row: SelectOpportunity): Opportunity {
@@ -136,6 +159,26 @@ function mapOpportunityToRow(opportunity: Opportunity) {
     exampleTasks: opportunity.exampleTasks ?? [],
     examplePrompts: opportunity.examplePrompts ?? [],
     scoringFactors: opportunity.scoringFactors ?? [],
+  };
+}
+
+function mapRowToPlaybook(row: SelectPlaybook): Playbook {
+  return {
+    id: row.id,
+    sideHustleId: row.sideHustleId,
+    version: row.version,
+    audienceMode: row.audienceMode as PlaybookAudience,
+    overview: row.overview,
+    actionPlanRows: row.actionPlanRows as Playbook["actionPlanRows"],
+    monetizationRows: row.monetizationRows as Playbook["monetizationRows"],
+    outreachTemplates: row.outreachTemplates as Playbook["outreachTemplates"],
+    promptPack: row.promptPack as Playbook["promptPack"],
+    toolkitRows: row.toolkitRows as Playbook["toolkitRows"],
+    quickWinChecklist: row.quickWinChecklist as Playbook["quickWinChecklist"],
+    bonusUpgrade: row.bonusUpgrade,
+    summaryRows: row.summaryRows as Playbook["summaryRows"],
+    qualityStatus: row.qualityStatus as Playbook["qualityStatus"],
+    createdAt: row.createdAt.toISOString(),
   };
 }
 

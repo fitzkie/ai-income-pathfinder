@@ -2,13 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
-import type { Opportunity } from "@shared/schema";
+import type { Opportunity, Playbook } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useSavedPlaybooks } from "@/hooks/useSavedPlaybooks";
-import { buildPlaybookForOpportunity } from "@/data/playbooks";
 import { PlaybookHeader } from "@/components/playbook/PlaybookHeader";
 import { SectionCard } from "@/components/playbook/SectionCard";
 import { SectionNav } from "@/components/playbook/SectionNav";
@@ -49,7 +48,10 @@ export default function ProPlaybook() {
     return opportunities.find((opp) => opp.slug === params.id || opp.id === params.id) || null;
   }, [opportunities, params?.id]);
 
-  const playbook = opportunity ? buildPlaybookForOpportunity(opportunity) : null;
+  const { data: playbook, isLoading: isLoadingPlaybook } = useQuery<Playbook>({
+    queryKey: opportunity ? [`/api/playbooks/${opportunity.id}?audience=general`] : [],
+    enabled: !!opportunity,
+  });
 
   const storageKey = playbook ? `playbook-checklist-${playbook.id}` : null;
   const [checklistState, setChecklistState] = useState<Record<number, boolean>>({});
@@ -71,7 +73,7 @@ export default function ProPlaybook() {
     window.localStorage.setItem(storageKey, JSON.stringify(checklistState));
   }, [checklistState, storageKey]);
 
-  if (isLoading || !playbook || !opportunity) {
+  if (isLoading || isLoadingPlaybook || !playbook || !opportunity) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <p className="text-sm text-zinc-400">Loading playbook…</p>

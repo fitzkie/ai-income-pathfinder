@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
-import type { Opportunity } from "@shared/schema";
+import type { Opportunity, Playbook } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,7 +16,6 @@ import { EntitlementGate } from "@/components/playbook/EntitlementGate";
 import { PaywallModal } from "@/components/playbook/PaywallModal";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useSavedPlaybooks } from "@/hooks/useSavedPlaybooks";
-import { buildPlaybookForOpportunity } from "@/data/playbooks";
 
 const upgradeUrl = "https://brianscottfitzgerald.com";
 
@@ -52,7 +51,12 @@ export default function HustleDetail() {
     return opportunities.find((opp) => opp.slug === params.id || opp.id === params.id) || null;
   }, [opportunities, params?.id]);
 
-  if (isLoading) {
+  const { data: playbook, isLoading: isLoadingPlaybook } = useQuery<Playbook>({
+    queryKey: opportunity ? [`/api/playbooks/${opportunity.id}?audience=general`] : [],
+    enabled: !!opportunity,
+  });
+
+  if (isLoading || isLoadingPlaybook) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <p className="text-sm text-zinc-400">Loading preview…</p>
@@ -60,15 +64,14 @@ export default function HustleDetail() {
     );
   }
 
-  if (!opportunity) {
+  if (!opportunity || !playbook) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-sm text-zinc-400">Hustle not found.</p>
+        <p className="text-sm text-zinc-400">Playbook preview not found.</p>
       </div>
     );
   }
 
-  const playbook = buildPlaybookForOpportunity(opportunity);
   const previewChecklist = playbook.quickWinChecklist.slice(0, 3);
   const lockedChecklist = playbook.quickWinChecklist.slice(3);
   const fitScore = Math.min(92, 70 + (5 - opportunity.difficulty) * 6);

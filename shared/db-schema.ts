@@ -62,6 +62,25 @@ export const opportunitiesTable = pgTable("opportunities", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Playbooks Table
+export const playbooks = pgTable("playbooks", {
+  id: text("id").primaryKey(),
+  sideHustleId: text("side_hustle_id").notNull(),
+  version: text("version").notNull(),
+  audienceMode: text("audience_mode").notNull(),
+  overview: text("overview").notNull(),
+  actionPlanRows: jsonb("action_plan_rows").notNull(),
+  monetizationRows: jsonb("monetization_rows").notNull(),
+  outreachTemplates: jsonb("outreach_templates").notNull(),
+  promptPack: jsonb("prompt_pack").notNull(),
+  toolkitRows: jsonb("toolkit_rows").notNull(),
+  quickWinChecklist: jsonb("quick_win_checklist").notNull(),
+  bonusUpgrade: text("bonus_upgrade").notNull(),
+  summaryRows: jsonb("summary_rows").notNull(),
+  qualityStatus: text("quality_status").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Insert schemas
 export const insertProfileSchema = createInsertSchema(profiles);
 export const insertRecommendationSchema = createInsertSchema(recommendations);
@@ -73,3 +92,5 @@ export type InsertProfile = typeof profiles.$inferInsert;
 export type InsertRecommendation = typeof recommendations.$inferInsert;
 export type SelectOpportunity = typeof opportunitiesTable.$inferSelect;
 export type InsertOpportunity = typeof opportunitiesTable.$inferInsert;
+export type SelectPlaybook = typeof playbooks.$inferSelect;
+export type InsertPlaybook = typeof playbooks.$inferInsert;

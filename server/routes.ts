@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { scoreOpportunity, generateRationale } from "./scoring";
 import { generateMockDemandSignals } from "./demandSignals";
 import { generateActionPlan } from "./actionPlans";
-import { Profile, Recommendation, RecommendationItem } from "@shared/schema";
+import { Profile, Recommendation, RecommendationItem, PlaybookAudience } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Get all opportunities
@@ -83,6 +83,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(recommendation);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch recommendation" });
+    }
+  });
+
+  // Get playbook for a side hustle
+  app.get("/api/playbooks/:sideHustleId", async (req, res) => {
+    try {
+      const audience = (req.query.audience as PlaybookAudience) || "general";
+      const playbook = await storage.getPlaybookBySideHustleId(req.params.sideHustleId, audience);
+      if (!playbook) {
+        return res.status(404).json({ error: "Playbook not found" });
+      }
+      res.json(playbook);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch playbook" });
     }
   });
 

@@ -1,4 +1,4 @@
-import { Profile, Recommendation, Opportunity } from "@shared/schema";
+import { Profile, Recommendation, Opportunity, Playbook, PlaybookAudience } from "@shared/schema";
 import { DatabaseStorage } from "./db-storage";
 
 export interface IStorage {
@@ -15,6 +15,12 @@ export interface IStorage {
   // Recommendations
   saveRecommendation(recommendation: Recommendation): Promise<Recommendation>;
   getRecommendation(id: string): Promise<Recommendation | undefined>;
+
+  // Playbooks
+  getPlaybookBySideHustleId(
+    sideHustleId: string,
+    audienceMode: PlaybookAudience
+  ): Promise<Playbook | undefined>;
 }
 
 export const storage: IStorage = new DatabaseStorage();
