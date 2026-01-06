@@ -1,4 +1,11 @@
-import { Profile, Recommendation, Opportunity, Playbook, PlaybookAudience } from "@shared/schema";
+import {
+  Profile,
+  Recommendation,
+  Opportunity,
+  Playbook,
+  PlaybookAudience,
+  QuickWinPack,
+} from "@shared/schema";
 import { IStorage } from "./storage";
 import { db } from "./db";
 import {
@@ -6,8 +13,10 @@ import {
   recommendations,
   opportunitiesTable,
   playbooks,
+  playbookQuickWinPacks,
   SelectOpportunity,
   SelectPlaybook,
+  SelectPlaybookQuickWinPack,
 } from "@shared/db-schema";
 import { asc, eq } from "drizzle-orm";
 import { randomUUID } from "crypto";
@@ -120,6 +129,16 @@ export class DatabaseStorage implements IStorage {
     const playbook = result.find((row) => row.audienceMode === audienceMode) ?? result[0];
     return mapRowToPlaybook(playbook);
   }
+
+  async getQuickWinPackBySideHustleId(sideHustleId: string): Promise<QuickWinPack | undefined> {
+    const [row] = await db
+      .select()
+      .from(playbookQuickWinPacks)
+      .where(eq(playbookQuickWinPacks.sideHustleId, sideHustleId))
+      .limit(1);
+
+    return row ? mapRowToQuickWinPack(row) : undefined;
+  }
 }
 
 function mapRowToOpportunity(row: SelectOpportunity): Opportunity {
@@ -179,6 +198,29 @@ function mapRowToPlaybook(row: SelectPlaybook): Playbook {
     summaryRows: row.summaryRows as Playbook["summaryRows"],
     qualityStatus: row.qualityStatus as Playbook["qualityStatus"],
     createdAt: row.createdAt.toISOString(),
+  };
+}
+
+function mapRowToQuickWinPack(row: SelectPlaybookQuickWinPack): QuickWinPack {
+  const rawTemplates = row.outreachTemplates as Record<string, string>;
+  const rawPrompts = row.promptPack as Array<{ title: string; prompt: string; use_case?: string; useCase?: string }>;
+
+  return {
+    id: row.id,
+    playbookId: row.playbookId,
+    sideHustleId: row.sideHustleId,
+    checklist: row.checklist as QuickWinPack["checklist"],
+    promptPack: rawPrompts.map((item) => ({
+      title: item.title,
+      prompt: item.prompt,
+      useCase: item.useCase ?? item.use_case ?? "",
+    })),
+    outreachTemplates: {
+      coldEmail: rawTemplates.coldEmail ?? rawTemplates.cold_email ?? "",
+      linkedInDm: rawTemplates.linkedInDm ?? rawTemplates.linkedin_dm ?? "",
+    },
+    createdAt: row.createdAt.toISOString(),
+    updatedAt: row.updatedAt.toISOString(),
   };
 }
 

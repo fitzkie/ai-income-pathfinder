@@ -100,6 +100,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get quick win pack for a side hustle
+  app.get("/api/playbooks/:sideHustleId/quick-win-pack", async (req, res) => {
+    try {
+      const pack = await storage.getQuickWinPackBySideHustleId(req.params.sideHustleId);
+      if (!pack) {
+        return res.status(404).json({ error: "Quick win pack not found" });
+      }
+      res.json(pack);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch quick win pack" });
+    }
+  });
+
   // Admin Routes
 
   // Create a new opportunity

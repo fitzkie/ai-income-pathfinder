@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
-import type { Opportunity, Playbook } from "@shared/schema";
+import type { Opportunity, Playbook, QuickWinPack } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useSavedPlaybooks } from "@/hooks/useSavedPlaybooks";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { PlaybookHeader } from "@/components/playbook/PlaybookHeader";
 import { SectionCard } from "@/components/playbook/SectionCard";
 import { SectionNav } from "@/components/playbook/SectionNav";
@@ -38,6 +39,9 @@ export default function ProPlaybook() {
   const { isPro, setPlan } = useEntitlement();
   const { toggleSaved, isSaved } = useSavedPlaybooks();
   const [paywallOpen, setPaywallOpen] = useState(false);
+  const [quickWinOpen, setQuickWinOpen] = useState(false);
+  const [quickWinPack, setQuickWinPack] = useState<QuickWinPack | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const { data: opportunities, isLoading } = useQuery<Opportunity[]>({
     queryKey: ["/api/opportunities"],
@@ -55,6 +59,7 @@ export default function ProPlaybook() {
 
   const storageKey = playbook ? `playbook-checklist-${playbook.id}` : null;
   const [checklistState, setChecklistState] = useState<Record<number, boolean>>({});
+  const quickWinStorageKey = playbook ? `quick-win-pack-${playbook.id}` : null;
 
   useEffect(() => {
     if (!storageKey || typeof window === "undefined") return;
@@ -72,6 +77,54 @@ export default function ProPlaybook() {
     if (!storageKey || typeof window === "undefined") return;
     window.localStorage.setItem(storageKey, JSON.stringify(checklistState));
   }, [checklistState, storageKey]);
+
+  const handleGenerate = async () => {
+    if (!opportunity || !playbook) return;
+    if (quickWinPack) {
+      setQuickWinOpen(true);
+      return;
+    }
+
+    if (quickWinStorageKey && typeof window !== "undefined") {
+      const cached = window.localStorage.getItem(quickWinStorageKey);
+      if (cached) {
+        try {
+          const parsed = JSON.parse(cached) as QuickWinPack;
+          setQuickWinPack(parsed);
+          setQuickWinOpen(true);
+          return;
+        } catch {
+          window.localStorage.removeItem(quickWinStorageKey);
+        }
+      }
+    }
+
+    setIsGenerating(true);
+    try {
+      const response = await fetch(`/api/playbooks/${opportunity.id}/quick-win-pack`);
+      if (!response.ok) {
+        throw new Error("Failed to load quick win pack.");
+      }
+      const pack = (await response.json()) as QuickWinPack;
+      setQuickWinPack(pack);
+      if (quickWinStorageKey && typeof window !== "undefined") {
+        window.localStorage.setItem(quickWinStorageKey, JSON.stringify(pack));
+      }
+      setQuickWinOpen(true);
+    } catch (error) {
+      toast({
+        title: "Generate failed",
+        description: "We could not load the quick win pack. Try again.",
+      });
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const handleCopy = async (text: string, label: string) => {
+    await navigator.clipboard.writeText(text);
+    toast({ title: `${label} copied`, description: "Copied. Go get paid." });
+  };
 
   if (isLoading || isLoadingPlaybook || !playbook || !opportunity) {
     return (
@@ -102,13 +155,87 @@ export default function ProPlaybook() {
         isPro={isPro}
         onUpgrade={() => setPaywallOpen(true)}
         onSave={() => toggleSaved(opportunity.slug)}
-        onGenerate={() =>
-          toast({
-            title: "Generating variations",
-            description: "Give us 10–20 seconds to spin a fresh version.",
-          })
-        }
+        onGenerate={handleGenerate}
+        isGenerating={isGenerating}
+        quickWinCallout="Quick Win Pack: alternate checklist + 3 new prompts + 2 new outreach scripts"
       />
+
+      <Dialog open={quickWinOpen} onOpenChange={setQuickWinOpen}>
+        <DialogContent className="max-h-[80vh] overflow-y-auto border-zinc-800 bg-black text-white">
+          <DialogHeader>
+            <DialogTitle className="text-lg">Quick Win Pack</DialogTitle>
+          </DialogHeader>
+          {!quickWinPack ? (
+            <p className="text-sm text-zinc-400">Loading quick win pack…</p>
+          ) : (
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">Alternate 7-Day Checklist</h3>
+                <div className="mt-3 space-y-2">
+                  {quickWinPack.checklist.map((item) => (
+                    <p key={item.label} className="text-sm text-zinc-300">
+                      • {item.label}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">Quick Win Prompts</h3>
+                <div className="mt-3 grid gap-4 lg:grid-cols-2">
+                  {quickWinPack.promptPack.map((prompt) => (
+                    <PromptCard
+                      key={prompt.title}
+                      title={prompt.title}
+                      prompt={prompt.prompt}
+                      useCase={prompt.useCase}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-semibold text-zinc-200">Quick Win Outreach</h3>
+                <div className="mt-3 space-y-4">
+                  <div className="rounded-lg border border-zinc-800 bg-zinc-950/80 p-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs uppercase text-zinc-500">Cold Email</p>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-zinc-700 text-zinc-200"
+                        onClick={() => handleCopy(quickWinPack.outreachTemplates.coldEmail, "Cold Email")}
+                      >
+                        Copy
+                      </Button>
+                    </div>
+                    <p className="mt-3 text-xs text-zinc-200 whitespace-pre-wrap">
+                      {quickWinPack.outreachTemplates.coldEmail}
+                    </p>
+                  </div>
+
+                  <div className="rounded-lg border border-zinc-800 bg-zinc-950/80 p-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs uppercase text-zinc-500">LinkedIn DM</p>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-zinc-700 text-zinc-200"
+                        onClick={() => handleCopy(quickWinPack.outreachTemplates.linkedInDm, "LinkedIn DM")}
+                      >
+                        Copy
+                      </Button>
+                    </div>
+                    <p className="mt-3 text-xs text-zinc-200 whitespace-pre-wrap">
+                      {quickWinPack.outreachTemplates.linkedInDm}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <div className="mx-auto max-w-6xl px-4 pt-8">
         <Button

@@ -27,6 +27,7 @@ const sectionItems = [
   { id: "prompt-pack", label: "Prompt Pack" },
   { id: "toolkit", label: "Toolkit" },
   { id: "quick-win-checklist", label: "Quick Win Checklist" },
+  { id: "quick-win-pack", label: "Quick Win Pack" },
   { id: "bonus-upgrade", label: "Bonus Upgrade" },
   { id: "summary", label: "Summary" },
 ];
@@ -111,12 +112,17 @@ export default function HustleDetail() {
             >
               {isSaved(opportunity.slug) ? "Saved" : "Save"}
             </Button>
-            <Button
-              className="bg-[#ebb437] text-black hover:bg-[#d6a931]"
-              onClick={() => setPaywallOpen(true)}
-            >
-              Unlock Full Pro Playbook
-            </Button>
+            <div className="flex flex-col items-end gap-1">
+              <Button
+                className="bg-[#ebb437] text-black hover:bg-[#d6a931]"
+                onClick={() => setPaywallOpen(true)}
+              >
+                Unlock Full Pro Playbook
+              </Button>
+              <span className="text-xs text-zinc-400">
+                Quick Win Pack: alternate checklist + 3 new prompts + 2 new outreach scripts
+              </span>
+            </div>
           </div>
         </div>
       </header>
@@ -273,6 +279,22 @@ export default function HustleDetail() {
                   </ul>
                 </EntitlementGate>
               </div>
+            </SectionCard>
+
+            <SectionCard id="quick-win-pack" title="Quick Win Pack" subtitle="Available with Pro">
+              <EntitlementGate locked onUpgrade={() => setPaywallOpen(true)}>
+                <div className="space-y-3 text-sm text-zinc-200">
+                  <p>
+                    Unlock the Quick Win Pack for a fresh 7-day checklist, 3 new prompts, and 2 outreach
+                    scripts tailored to this hustle.
+                  </p>
+                  <ul className="space-y-1 text-zinc-300">
+                    <li>• Alternate checklist for faster launch</li>
+                    <li>• 3 prompts to refine the offer and lead list</li>
+                    <li>• 2 outreach scripts to book calls quickly</li>
+                  </ul>
+                </div>
+              </EntitlementGate>
             </SectionCard>
 
             <SectionCard id="bonus-upgrade" title="Bonus Upgrade" subtitle="Pro-only insights">

@@ -1,4 +1,11 @@
-import { Profile, Recommendation, Opportunity, Playbook, PlaybookAudience } from "@shared/schema";
+import {
+  Profile,
+  Recommendation,
+  Opportunity,
+  Playbook,
+  PlaybookAudience,
+  QuickWinPack,
+} from "@shared/schema";
 import { DatabaseStorage } from "./db-storage";
 
 export interface IStorage {
@@ -21,6 +28,8 @@ export interface IStorage {
     sideHustleId: string,
     audienceMode: PlaybookAudience
   ): Promise<Playbook | undefined>;
+
+  getQuickWinPackBySideHustleId(sideHustleId: string): Promise<QuickWinPack | undefined>;
 }
 
 export const storage: IStorage = new DatabaseStorage();

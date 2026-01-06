@@ -119,6 +119,17 @@ export interface Playbook {
   createdAt: string;
 }
 
+export interface QuickWinPack {
+  id: string;
+  playbookId: string;
+  sideHustleId: string;
+  checklist: ChecklistItem[];
+  promptPack: PromptPackItem[];
+  outreachTemplates: Pick<OutreachTemplates, "coldEmail" | "linkedInDm">;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Demand Signal Schema
 export interface DemandSignal {
   source: "google_trends" | "product_hunt" | "upwork" | "youtube";

@@ -8,6 +8,8 @@ interface PlaybookHeaderProps {
   onUpgrade: () => void;
   onSave?: () => void;
   onGenerate?: () => void;
+  isGenerating?: boolean;
+  quickWinCallout?: string;
 }
 
 export function PlaybookHeader({
@@ -17,6 +19,8 @@ export function PlaybookHeader({
   onUpgrade,
   onSave,
   onGenerate,
+  isGenerating = false,
+  quickWinCallout,
 }: PlaybookHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-900 bg-black/80 backdrop-blur">
@@ -44,16 +48,28 @@ export function PlaybookHeader({
               Upgrade
             </Button>
           )}
-          {onGenerate ? (
-            <Button variant="secondary" className="bg-zinc-900 text-white" onClick={onGenerate}>
-              Generate
-            </Button>
-          ) : null}
-          {onSave ? (
-            <Button variant="outline" className="border-zinc-700 text-zinc-200" onClick={onSave}>
-              Save
-            </Button>
-          ) : null}
+          <div className="flex flex-col items-end gap-1">
+            <div className="flex items-center gap-2">
+              {onGenerate ? (
+                <Button
+                  variant="secondary"
+                  className="bg-zinc-900 text-white"
+                  onClick={onGenerate}
+                  disabled={isGenerating}
+                >
+                  {isGenerating ? "Generating..." : "Generate"}
+                </Button>
+              ) : null}
+              {onSave ? (
+                <Button variant="outline" className="border-zinc-700 text-zinc-200" onClick={onSave}>
+                  Save
+                </Button>
+              ) : null}
+            </div>
+            {quickWinCallout ? (
+              <span className="text-xs text-zinc-500">{quickWinCallout}</span>
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

@@ -81,6 +81,18 @@ export const playbooks = pgTable("playbooks", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Playbook Quick Win Packs
+export const playbookQuickWinPacks = pgTable("playbook_quick_win_packs", {
+  id: text("id").primaryKey(),
+  playbookId: text("playbook_id").notNull().unique(),
+  sideHustleId: text("side_hustle_id").notNull(),
+  checklist: jsonb("checklist").notNull(),
+  promptPack: jsonb("prompt_pack").notNull(),
+  outreachTemplates: jsonb("outreach_templates").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Insert schemas
 export const insertProfileSchema = createInsertSchema(profiles);
 export const insertRecommendationSchema = createInsertSchema(recommendations);
@@ -94,3 +106,5 @@ export type SelectOpportunity = typeof opportunitiesTable.$inferSelect;
 export type InsertOpportunity = typeof opportunitiesTable.$inferInsert;
 export type SelectPlaybook = typeof playbooks.$inferSelect;
 export type InsertPlaybook = typeof playbooks.$inferInsert;
+export type SelectPlaybookQuickWinPack = typeof playbookQuickWinPacks.$inferSelect;
+export type InsertPlaybookQuickWinPack = typeof playbookQuickWinPacks.$inferInsert;
